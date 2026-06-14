@@ -13,7 +13,6 @@
   --text:#E8EAF0;--muted:#8B9FC4;--dim:#4A5568;
   --green:#4ECCA3;--green2:#2A9D8F;
   --gold:#F0C040;--gold2:#E88A00;
-  --purple:#A78BFA;--purple2:#7C3AED;
   --tele:#229ED9;--tele2:#1B86BB;
 }
 html{scroll-behavior:smooth}
@@ -57,7 +56,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(8,11,18,.93);backdrop-filt
 .feature-title{font-weight:700;font-size:15px;margin-bottom:7px}
 .feature-desc{color:var(--muted);font-size:13px;line-height:1.6}
 
-.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
 .plan-card{position:relative;background:var(--bg2);border:1.5px solid var(--border);border-radius:22px;padding:32px 28px;transition:all .2s}
 .plan-card.gold{border-color:rgba(240,192,64,.25);box-shadow:0 0 60px rgba(240,192,64,.07)}
 .plan-card:hover{transform:translateY(-4px)}
@@ -65,24 +64,13 @@ nav{position:sticky;top:0;z-index:200;background:rgba(8,11,18,.93);backdrop-filt
 .badge-green{background:linear-gradient(90deg,var(--green),var(--green2))}
 .badge-gold{background:linear-gradient(90deg,var(--gold),var(--gold2))}
 .plan-dur{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
-.plan-name{font-size:21px;font-weight:800;margin-bottom:18px}
-
-.price-block{background:rgba(167,139,250,.07);border:1px solid rgba(167,139,250,.22);border-radius:14px;padding:14px 16px;margin-bottom:10px}
-.price-block.gold-block{background:rgba(240,192,64,.07);border:1px solid rgba(240,192,64,.22)}
-.price-tier-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--purple);margin-bottom:4px;display:flex;align-items:center;gap:5px}
-.price-block.gold-block .price-tier-label{color:var(--gold)}
-.price-main{font-size:28px;font-weight:900;letter-spacing:-.02em;color:var(--text);line-height:1.1}
-.price-block.gold-block .price-main{color:var(--gold)}
-.price-sub{font-size:12px;color:var(--muted);margin-top:4px}
-.price-saving{display:inline-block;background:rgba(78,204,163,.1);border:1px solid rgba(78,204,163,.25);color:var(--green);font-size:11px;font-weight:600;padding:3px 10px;border-radius:12px;margin-top:6px}
-
-.price-outside{background:var(--bg);border:1px dashed var(--border2);border-radius:12px;padding:10px 14px;margin-bottom:18px}
-.price-outside-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:3px}
-.price-outside-val{font-size:16px;font-weight:700;color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(139,159,196,.5)}
-
-.plan-divider{height:1px;background:var(--border);margin-bottom:18px}
-.plan-features{list-style:none;margin-bottom:22px}
-.plan-features li{display:flex;gap:9px;margin-bottom:9px;font-size:13px;color:#B0B8CC;line-height:1.4}
+.plan-name{font-size:21px;font-weight:800;margin-bottom:16px}
+.plan-price{font-size:36px;font-weight:900;letter-spacing:-.03em}
+.plan-per{color:var(--muted);font-size:13px;margin-top:3px;margin-bottom:8px;min-height:18px}
+.plan-saving{display:inline-block;background:rgba(78,204,163,.1);border:1px solid rgba(78,204,163,.25);color:var(--green);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:20px;min-height:26px}
+.plan-divider{height:1px;background:var(--border);margin-bottom:20px}
+.plan-features{list-style:none;margin-bottom:24px}
+.plan-features li{display:flex;gap:9px;margin-bottom:10px;font-size:13px;color:#B0B8CC;line-height:1.4}
 .check{flex-shrink:0;font-weight:700}
 .pricing-note{text-align:center;margin-top:22px;color:var(--dim);font-size:13px}
 
@@ -102,11 +90,7 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
 .modal-close:hover{background:#2A3050}
 .modal-icon{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--tele),var(--tele2));display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:36px;color:#fff}
 .modal-title{font-size:22px;font-weight:800;margin-bottom:10px}
-.modal-tier-select{display:flex;gap:8px;margin:18px 0 14px}
-.modal-tier-btn{flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--border2);background:transparent;color:var(--muted);font-weight:600;font-size:13px;cursor:pointer;font-family:inherit;transition:all .2s}
-.modal-tier-btn.selected{border-color:var(--green);background:rgba(78,204,163,.08);color:var(--green)}
-.modal-tier-btn.selected.mdm{border-color:var(--purple);background:rgba(167,139,250,.1);color:var(--purple)}
-.modal-plan{background:rgba(78,204,163,.08);border:1px solid rgba(78,204,163,.22);border-radius:12px;padding:12px 18px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:center;text-align:left}
+.modal-plan{background:rgba(78,204,163,.08);border:1px solid rgba(78,204,163,.22);border-radius:12px;padding:12px 18px;margin:18px 0;display:flex;justify-content:space-between;align-items:center;text-align:left}
 .modal-plan-name{color:var(--green);font-weight:600;font-size:14px}
 .modal-plan-price{font-weight:700;font-size:15px}
 .modal-desc{color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:22px}
@@ -117,7 +101,6 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
   .hero{padding:56px 16px 60px}
   .modal{padding:32px 22px}
   .section{padding:42px 16px}
-  .price-main{font-size:24px}
 }
 </style>
 </head>
@@ -159,25 +142,16 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
   <div class="section-header">
     <div class="section-label">Đầu tư</div>
     <h2 class="section-title">Chọn gói phù hợp</h2>
-    <div style="margin-top:14px;color:var(--muted);font-size:14px">🎁 Thành viên <strong style="color:var(--purple)">Ma Đạo Môn</strong> được ưu đãi <strong style="color:var(--green)">-40%</strong> so với giá Bên Ngoài</div>
   </div>
 
   <div class="pricing-grid">
 
-    <!-- GÓI THÁNG -->
     <div class="plan-card">
       <div class="plan-dur" style="color:var(--green)">1 tháng</div>
       <div class="plan-name">Gói Tháng</div>
-
-      <div class="price-block">
-        <div class="price-tier-label">⚜️ Ma Đạo Môn</div>
-        <div class="price-main">669,000đ</div>
-      </div>
-      <div class="price-outside">
-        <div class="price-outside-label">Giá Bên Ngoài</div>
-        <div class="price-outside-val">1,119,000đ</div>
-      </div>
-
+      <div class="plan-price">1,079,000đ</div>
+      <div class="plan-per"></div>
+      <span class="plan-saving" style="visibility:hidden">-</span>
       <div class="plan-divider"></div>
       <ul class="plan-features">
         <li><span class="check" style="color:var(--green)">✓</span>Truy cập toàn bộ nội dung mentorship</li>
@@ -188,23 +162,13 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
       <button class="btn btn-primary btn-full" onclick="openContact('Gói Tháng')">Đăng ký Gói Tháng →</button>
     </div>
 
-    <!-- GÓI QUÝ -->
     <div class="plan-card">
       <div class="plan-badge badge-green">PHỔ BIẾN</div>
       <div class="plan-dur" style="color:var(--green)">3 tháng</div>
       <div class="plan-name">Gói Quý</div>
-
-      <div class="price-block">
-        <div class="price-tier-label">⚜️ Ma Đạo Môn</div>
-        <div class="price-main">1,699,000đ</div>
-        <div class="price-sub">≈ 566,000đ / tháng</div>
-        <span class="price-saving">🎁 Tiết kiệm 308,000đ</span>
-      </div>
-      <div class="price-outside">
-        <div class="price-outside-label">Giá Bên Ngoài</div>
-        <div class="price-outside-val">2,829,000đ</div>
-      </div>
-
+      <div class="plan-price">2,719,000đ</div>
+      <div class="plan-per">≈ 906,000đ / tháng</div>
+      <span class="plan-saving">🎁 Tiết kiệm 518,000đ</span>
       <div class="plan-divider"></div>
       <ul class="plan-features">
         <li><span class="check" style="color:var(--green)">✓</span>Tất cả quyền lợi Gói Tháng</li>
@@ -215,23 +179,13 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
       <button class="btn btn-primary btn-full" onclick="openContact('Gói Quý')">Đăng ký Gói Quý →</button>
     </div>
 
-    <!-- GÓI NĂM -->
     <div class="plan-card gold">
       <div class="plan-badge badge-gold">TỐT NHẤT</div>
       <div class="plan-dur" style="color:var(--gold)">12 tháng</div>
       <div class="plan-name">Gói Năm</div>
-
-      <div class="price-block gold-block">
-        <div class="price-tier-label">⚜️ Ma Đạo Môn</div>
-        <div class="price-main">6,509,000đ</div>
-        <div class="price-sub">≈ 542,000đ / tháng</div>
-        <span class="price-saving">🎁 Tiết kiệm 1,519,000đ</span>
-      </div>
-      <div class="price-outside">
-        <div class="price-outside-label">Giá Bên Ngoài</div>
-        <div class="price-outside-val">10,849,000đ</div>
-      </div>
-
+      <div class="plan-price" style="color:var(--gold)">10,419,000đ</div>
+      <div class="plan-per">≈ 868,000đ / tháng</div>
+      <span class="plan-saving">🎁 Tiết kiệm 2,529,000đ</span>
       <div class="plan-divider"></div>
       <ul class="plan-features">
         <li><span class="check" style="color:var(--gold)">✓</span>Tất cả quyền lợi Gói Quý</li>
@@ -260,13 +214,6 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
     <button class="modal-close" onclick="closeModal()">✕</button>
     <div class="modal-icon">📩</div>
     <div class="modal-title">Liên hệ để đăng ký</div>
-
-    <div style="font-size:13px;color:var(--muted);margin-top:14px">Bạn thuộc nhóm nào?</div>
-    <div class="modal-tier-select">
-      <button class="modal-tier-btn selected mdm" id="mTierMDM" onclick="selectTier('mdm')">⚜️ Ma Đạo Môn</button>
-      <button class="modal-tier-btn" id="mTierOut" onclick="selectTier('out')">Bên Ngoài</button>
-    </div>
-
     <div class="modal-plan">
       <span class="modal-plan-name" id="modalPlanName"></span>
       <span class="modal-plan-price" id="modalPlanPrice"></span>
@@ -281,49 +228,19 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
 
 <script>
 const PRICES = {
-  mdm: {
-    'Gói Tháng': '669,000đ',
-    'Gói Quý': '1,699,000đ',
-    'Gói Năm': '6,509,000đ'
-  },
-  out: {
-    'Gói Tháng': '1,119,000đ',
-    'Gói Quý': '2,829,000đ',
-    'Gói Năm': '10,849,000đ'
-  }
+  'Gói Tháng': '1,079,000đ',
+  'Gói Quý': '2,719,000đ',
+  'Gói Năm': '10,419,000đ'
 };
 
-let currentPlan = null;
-let currentTier = 'mdm';
-
 function openContact(planName) {
-  currentPlan = planName;
-  currentTier = 'mdm';
-  updateModal();
+  const price = PRICES[planName];
+  document.getElementById('modalPlanName').textContent = planName;
+  document.getElementById('modalPlanPrice').textContent = price;
+  const msg = encodeURIComponent('Chào mentor, mình muốn đăng ký ' + planName + ' — ' + price);
+  document.getElementById('modalTeleBtn').href = 'https://t.me/sieleckierika?text=' + msg;
   document.getElementById('contactModal').classList.add('open');
   document.body.style.overflow = 'hidden';
-}
-
-function selectTier(tier) {
-  currentTier = tier;
-  const mBtn = document.getElementById('mTierMDM');
-  const oBtn = document.getElementById('mTierOut');
-  mBtn.classList.remove('selected','mdm');
-  oBtn.classList.remove('selected');
-  if (tier === 'mdm') { mBtn.classList.add('selected','mdm'); }
-  else { oBtn.classList.add('selected'); }
-  updateModal();
-}
-
-function updateModal() {
-  const price = PRICES[currentTier][currentPlan];
-  const tierLabel = currentTier === 'mdm' ? 'Ma Đạo Môn' : 'Bên Ngoài';
-
-  document.getElementById('modalPlanName').textContent = currentPlan + ' (' + tierLabel + ')';
-  document.getElementById('modalPlanPrice').textContent = price;
-
-  const msg = encodeURIComponent('Chào mentor, mình muốn đăng ký ' + currentPlan + ' (' + tierLabel + ') — ' + price);
-  document.getElementById('modalTeleBtn').href = 'https://t.me/sieleckierika?text=' + msg;
 }
 
 function closeModal() {
