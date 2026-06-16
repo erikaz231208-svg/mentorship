@@ -125,6 +125,32 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
 .success-desc{color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:22px}
 .success-desc strong{color:var(--text)}
 
+/* PROMO CODE */
+.promo-section{max-width:480px;margin:36px auto 0;background:linear-gradient(135deg,rgba(78,204,163,.06),rgba(240,192,64,.04));border:1px dashed rgba(78,204,163,.3);border-radius:18px;padding:22px}
+.promo-title{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green);text-align:center;margin-bottom:4px}
+.promo-sub{text-align:center;color:var(--muted);font-size:13px;margin-bottom:16px}
+.promo-input-row{display:flex;gap:8px}
+.promo-input{flex:1;background:var(--bg);border:1.5px solid var(--border2);border-radius:11px;padding:13px 16px;color:var(--text);font-size:14px;font-family:inherit;font-weight:600;letter-spacing:.04em;text-transform:uppercase;outline:none;transition:border-color .2s}
+.promo-input:focus{border-color:var(--green)}
+.promo-input.err{border-color:var(--red)}
+.promo-input.ok{border-color:var(--green);background:rgba(78,204,163,.05)}
+.btn-promo{background:linear-gradient(135deg,var(--green),var(--green2));color:#0A0D14;border:none;border-radius:11px;padding:13px 22px;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit;transition:opacity .2s,transform .15s;white-space:nowrap}
+.btn-promo:hover{opacity:.88;transform:translateY(-1px)}
+.btn-promo:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.promo-msg{margin-top:12px;padding:10px 14px;border-radius:10px;font-size:13px;display:none}
+.promo-msg.show{display:block}
+.promo-msg.ok{background:rgba(78,204,163,.1);border:1px solid rgba(78,204,163,.3);color:var(--green)}
+.promo-msg.err{background:rgba(255,107,107,.1);border:1px solid rgba(255,107,107,.3);color:var(--red)}
+.promo-active-banner{display:none;position:fixed;top:74px;left:50%;transform:translateX(-50%);z-index:150;background:linear-gradient(135deg,var(--green),var(--green2));color:#0A0D14;border-radius:12px;padding:10px 18px;font-weight:700;font-size:13px;box-shadow:0 8px 28px rgba(78,204,163,.35);animation:slideDown .3s ease}
+.promo-active-banner.show{display:flex;align-items:center;gap:8px}
+@keyframes slideDown{from{opacity:0;transform:translate(-50%,-12px)}to{opacity:1;transform:translate(-50%,0)}}
+.promo-active-banner button{background:rgba(10,13,20,.18);border:none;color:#0A0D14;width:22px;height:22px;border-radius:50%;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;font-weight:700}
+
+.plan-price-old{color:var(--dim);text-decoration:line-through;font-size:18px;font-weight:600;margin-bottom:2px;display:none}
+.plan-price-old.show{display:block}
+.plan-card.has-discount .plan-price{color:var(--green)}
+.plan-card.gold.has-discount .plan-price{color:var(--gold)}
+
 @media(max-width:640px){
   nav{padding:0 16px}
   .nav-logo-text{font-size:14px}
@@ -136,6 +162,11 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
 </style>
 </head>
 <body>
+
+<div class="promo-active-banner" id="promoBanner">
+  <span>🎁 Đã áp dụng mã <strong id="promoBannerCode"></strong> — Giảm <strong id="promoBannerPct"></strong></span>
+  <button onclick="removePromo()" title="Bỏ mã">✕</button>
+</div>
 
 <nav>
   <a class="nav-logo" href="#">
@@ -182,7 +213,8 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
     <div class="plan-card">
       <div class="plan-dur" style="color:var(--green)">1 tháng</div>
       <div class="plan-name">Gói Tháng</div>
-      <div class="plan-price">1,299,000đ</div>
+      <div class="plan-price-old" id="oldMonth">1,299,000đ</div>
+      <div class="plan-price" id="priceMonth">1,299,000đ</div>
       <div class="plan-per"></div>
       <span class="plan-saving" style="visibility:hidden">-</span>
       <div class="plan-divider"></div>
@@ -199,9 +231,10 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
       <div class="plan-badge badge-green">PHỔ BIẾN</div>
       <div class="plan-dur" style="color:var(--green)">3 tháng</div>
       <div class="plan-name">Gói Quý</div>
-      <div class="plan-price">3,259,000đ</div>
-      <div class="plan-per">≈ 1,086,000đ / tháng</div>
-      <span class="plan-saving">🎁 Tiết kiệm 638,000đ</span>
+      <div class="plan-price-old" id="oldQuarter">3,259,000đ</div>
+      <div class="plan-price" id="priceQuarter">3,259,000đ</div>
+      <div class="plan-per" id="perQuarter">≈ 1,086,000đ / tháng</div>
+      <span class="plan-saving" id="saveQuarter">🎁 Tiết kiệm 638,000đ</span>
       <div class="plan-divider"></div>
       <ul class="plan-features">
         <li><span class="check" style="color:var(--green)">✓</span>Tất cả quyền lợi Gói Tháng</li>
@@ -216,9 +249,10 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
       <div class="plan-badge badge-gold">TỐT NHẤT</div>
       <div class="plan-dur" style="color:var(--gold)">12 tháng</div>
       <div class="plan-name">Gói Năm</div>
-      <div class="plan-price" style="color:var(--gold)">12,499,000đ</div>
-      <div class="plan-per">≈ 1,042,000đ / tháng</div>
-      <span class="plan-saving">🎁 Tiết kiệm 3,089,000đ</span>
+      <div class="plan-price-old" id="oldYear">12,499,000đ</div>
+      <div class="plan-price" style="color:var(--gold)" id="priceYear">12,499,000đ</div>
+      <div class="plan-per" id="perYear">≈ 1,042,000đ / tháng</div>
+      <span class="plan-saving" id="saveYear">🎁 Tiết kiệm 3,089,000đ</span>
       <div class="plan-divider"></div>
       <ul class="plan-features">
         <li><span class="check" style="color:var(--gold)">✓</span>Tất cả quyền lợi Gói Quý</li>
@@ -231,6 +265,17 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
 
   </div>
   <div class="pricing-note">💡 Bấm "Đặt lịch tư vấn" để gửi yêu cầu trực tiếp về email mentor</div>
+
+  <!-- PROMO CODE -->
+  <div class="promo-section">
+    <div class="promo-title">🎟️ Có mã khuyến mãi?</div>
+    <div class="promo-sub">Nhập mã giảm giá nếu bạn có</div>
+    <div class="promo-input-row">
+      <input type="text" id="promoInput" class="promo-input" placeholder="Nhập mã" maxlength="20" oninput="resetPromoMsg()" onkeydown="if(event.key==='Enter')applyPromo()"/>
+      <button class="btn-promo" id="btnPromo" onclick="applyPromo()">Áp dụng</button>
+    </div>
+    <div class="promo-msg" id="promoMsg"></div>
+  </div>
 </section>
 
 <section class="cta-section">
@@ -297,6 +342,16 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
       </div>
 
       <div class="form-group">
+        <label class="form-label">Mã khuyến mãi (tuỳ chọn)</label>
+        <div style="display:flex;gap:8px">
+          <input class="form-input" id="bPromo" placeholder="Nhập mã" style="text-transform:uppercase;flex:1" oninput="ce('bPromo')"/>
+          <button type="button" class="btn-promo" style="padding:12px 18px" onclick="applyPromoInModal()">Áp dụng</button>
+        </div>
+        <div class="form-error" id="errBPromo"></div>
+        <div id="bPromoStatus" style="display:none;margin-top:8px;padding:8px 12px;border-radius:9px;font-size:13px;background:rgba(78,204,163,.1);border:1px solid rgba(78,204,163,.3);color:var(--green)"></div>
+      </div>
+
+      <div class="form-group">
         <label class="form-label">Câu hỏi / mong muốn (tuỳ chọn)</label>
         <textarea class="form-textarea" id="bNote" placeholder="Bạn đang gặp vấn đề gì trong trading? Mục tiêu của bạn là gì?"></textarea>
       </div>
@@ -337,6 +392,19 @@ function openBookModal(plan) {
       if (o.value.includes(plan)) sel.value = o.value;
     }
   }
+  // Đồng bộ mã promo nếu đã áp dụng
+  const bPromo = document.getElementById('bPromo');
+  const bStatus = document.getElementById('bPromoStatus');
+  if (activePromo) {
+    bPromo.value = activePromo.code;
+    bPromo.classList.remove('err');
+    bStatus.style.display = 'block';
+    bStatus.innerHTML = '✅ Đã áp dụng <strong>' + activePromo.code + '</strong> — ' + activePromo.label;
+  } else {
+    bPromo.value = '';
+    bPromo.classList.remove('err','ok');
+    bStatus.style.display = 'none';
+  }
   document.getElementById('bookFormView').style.display = 'block';
   document.getElementById('bookSuccess').classList.remove('show');
   document.getElementById('bookModal').classList.add('open');
@@ -374,7 +442,14 @@ function submitBooking() {
   if (!ok) return;
 
   // Tạo nội dung email
-  const subject = '[BOOK A CALL] ' + name + ' — ' + plan;
+  const promoLine = activePromo
+    ? `\n• Mã giảm giá: ${activePromo.code} (${activePromo.label})`
+    : '';
+
+  const subject = activePromo
+    ? '[BOOK A CALL] ' + name + ' — ' + plan + ' [MÃ ' + activePromo.code + ']'
+    : '[BOOK A CALL] ' + name + ' — ' + plan;
+
   const body =
 `Xin chào Mentor,
 
@@ -390,7 +465,7 @@ Em muốn đặt lịch tư vấn cho chương trình The TLab Mentorship.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━
 📦 NỘI DUNG
 ━━━━━━━━━━━━━━━━━━━━━━━━━━
-• Gói quan tâm: ${plan}
+• Gói quan tâm: ${plan}${promoLine}
 • Khung giờ rảnh: ${time}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -423,7 +498,208 @@ function closeModal() {
 function closeIfOverlay(e) {
   if (e.target === document.getElementById('bookModal')) closeModal();
 }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+function applyPromoInModal() {
+  const input = document.getElementById('bPromo');
+  const status = document.getElementById('bPromoStatus');
+  const err = document.getElementById('errBPromo');
+  const code = input.value.trim().toUpperCase();
+
+  if (!code) {
+    err.textContent = 'Vui lòng nhập mã';
+    err.classList.add('show');
+    input.classList.add('err');
+    return;
+  }
+
+  const matchedKey = Object.keys(PROMO_CODES).find(k => k.toUpperCase() === code);
+
+  if (!matchedKey) {
+    err.textContent = '❌ Mã không hợp lệ hoặc đã hết hạn';
+    err.classList.add('show');
+    input.classList.add('err');
+    status.style.display = 'none';
+    activePromo = null;
+    document.getElementById('promoBanner').classList.remove('show');
+    updatePrices();
+    return;
+  }
+
+  // Hợp lệ
+  const promo = PROMO_CODES[matchedKey];
+  activePromo = { code: matchedKey, ...promo };
+  input.classList.remove('err');
+  err.classList.remove('show');
+  status.style.display = 'block';
+  status.innerHTML = '✅ Đã áp dụng <strong>' + matchedKey + '</strong> — ' + promo.label;
+
+  // Đồng bộ với ô promo ngoài
+  const mainInput = document.getElementById('promoInput');
+  mainInput.value = matchedKey;
+  mainInput.classList.remove('err');
+  mainInput.classList.add('ok');
+  showPromoMsg('✅ Đã áp dụng mã ' + matchedKey + ' — ' + promo.label, 'ok');
+  showBanner(matchedKey, promo.discount);
+  updatePrices();
+  sendPromoNotification(matchedKey);
+}
+
+// ════════════════════════════════════════════
+// 🎟️  PROMO CODES
+// ════════════════════════════════════════════
+const PROMO_CODES = {
+  'TL15%': { discount: 15, label: 'Giảm 15%' }
+  // Có thể thêm mã khác sau, vd: 'NEWBIE10': { discount: 10, label: 'Giảm 10%' }
+};
+
+const BASE_PRICES = {
+  month:   { price: 1299000, name: 'Gói Tháng' },
+  quarter: { price: 3259000, name: 'Gói Quý',  baseMonthly: 1299000 },
+  year:    { price: 12499000, name: 'Gói Năm', baseMonthly: 1299000 }
+};
+
+let activePromo = null;
+
+function fmtVND(n){ return Math.round(n).toLocaleString('vi-VN') + 'đ'; }
+
+function resetPromoMsg() {
+  const msg = document.getElementById('promoMsg');
+  msg.classList.remove('show','ok','err');
+  document.getElementById('promoInput').classList.remove('err','ok');
+}
+
+function applyPromo() {
+  const input = document.getElementById('promoInput');
+  const code  = input.value.trim().toUpperCase();
+  const msg   = document.getElementById('promoMsg');
+
+  if (!code) {
+    showPromoMsg('Vui lòng nhập mã', 'err');
+    input.classList.add('err');
+    return;
+  }
+
+  // Tìm mã (so sánh không phân biệt hoa thường)
+  const matchedKey = Object.keys(PROMO_CODES).find(k => k.toUpperCase() === code);
+
+  if (!matchedKey) {
+    showPromoMsg('❌ Mã không hợp lệ hoặc đã hết hạn', 'err');
+    input.classList.add('err');
+    activePromo = null;
+    updatePrices();
+    return;
+  }
+
+  // Mã hợp lệ
+  const promo = PROMO_CODES[matchedKey];
+  activePromo = { code: matchedKey, ...promo };
+  input.classList.remove('err');
+  input.classList.add('ok');
+  showPromoMsg('✅ Đã áp dụng mã ' + matchedKey + ' — ' + promo.label, 'ok');
+
+  updatePrices();
+  showBanner(matchedKey, promo.discount);
+  sendPromoNotification(matchedKey);
+}
+
+function showPromoMsg(text, type) {
+  const msg = document.getElementById('promoMsg');
+  msg.textContent = text;
+  msg.classList.remove('ok','err');
+  msg.classList.add(type, 'show');
+}
+
+function showBanner(code, pct) {
+  document.getElementById('promoBannerCode').textContent = code;
+  document.getElementById('promoBannerPct').textContent = pct + '%';
+  document.getElementById('promoBanner').classList.add('show');
+}
+
+function removePromo() {
+  activePromo = null;
+  document.getElementById('promoBanner').classList.remove('show');
+  document.getElementById('promoInput').value = '';
+  document.getElementById('promoInput').classList.remove('ok','err');
+  document.getElementById('promoMsg').classList.remove('show');
+  updatePrices();
+}
+
+function updatePrices() {
+  const factor = activePromo ? (1 - activePromo.discount / 100) : 1;
+
+  // Tháng
+  const newMonth = Math.round(BASE_PRICES.month.price * factor);
+  document.getElementById('priceMonth').textContent = fmtVND(newMonth);
+  toggleOld('oldMonth', BASE_PRICES.month.price, activePromo);
+
+  // Quý
+  const newQuarter = Math.round(BASE_PRICES.quarter.price * factor);
+  document.getElementById('priceQuarter').textContent = fmtVND(newQuarter);
+  document.getElementById('perQuarter').textContent = '≈ ' + fmtVND(newQuarter / 3) + ' / tháng';
+  const saveQuarter = BASE_PRICES.quarter.baseMonthly * 3 * factor - newQuarter;
+  document.getElementById('saveQuarter').innerHTML = activePromo
+    ? '🎁 Tiết kiệm thêm ' + fmtVND(BASE_PRICES.quarter.price - newQuarter) + ' nhờ mã ' + activePromo.code
+    : '🎁 Tiết kiệm 638,000đ';
+  toggleOld('oldQuarter', BASE_PRICES.quarter.price, activePromo);
+
+  // Năm
+  const newYear = Math.round(BASE_PRICES.year.price * factor);
+  document.getElementById('priceYear').textContent = fmtVND(newYear);
+  document.getElementById('perYear').textContent = '≈ ' + fmtVND(newYear / 12) + ' / tháng';
+  document.getElementById('saveYear').innerHTML = activePromo
+    ? '🎁 Tiết kiệm thêm ' + fmtVND(BASE_PRICES.year.price - newYear) + ' nhờ mã ' + activePromo.code
+    : '🎁 Tiết kiệm 3,089,000đ';
+  toggleOld('oldYear', BASE_PRICES.year.price, activePromo);
+
+  // Cập nhật dropdown trong modal
+  const sel = document.getElementById('bPlan');
+  if (sel) {
+    const opts = sel.querySelectorAll('option');
+    opts.forEach(o => {
+      if (o.value.startsWith('Gói Tháng')) o.value = 'Gói Tháng — ' + fmtVND(newMonth), o.textContent = 'Gói Tháng — ' + fmtVND(newMonth);
+      else if (o.value.startsWith('Gói Quý')) o.value = 'Gói Quý — ' + fmtVND(newQuarter), o.textContent = 'Gói Quý — ' + fmtVND(newQuarter);
+      else if (o.value.startsWith('Gói Năm')) o.value = 'Gói Năm — ' + fmtVND(newYear), o.textContent = 'Gói Năm — ' + fmtVND(newYear);
+    });
+  }
+}
+
+function toggleOld(id, originalPrice, promo) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (promo) {
+    el.textContent = fmtVND(originalPrice);
+    el.classList.add('show');
+  } else {
+    el.classList.remove('show');
+  }
+}
+
+function sendPromoNotification(code) {
+  // Gửi email thông báo về owner khi có người nhập mã thành công
+  const subject = '[PROMO USED] Có người vừa nhập mã ' + code;
+  const body =
+`Xin chào,
+
+Có người vừa nhập mã khuyến mãi trên website The TLab Mentorship.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎟️ THÔNG TIN MÃ
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Mã đã nhập: ${code}
+• Thời gian: ${new Date().toLocaleString('vi-VN')}
+• Trang: ${window.location.href}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+Họ chưa book a call, chỉ mới áp dụng mã.
+Hệ thống tự động gửi email này.`;
+
+  // Mở email ở tab/window ẩn — KHÔNG khuyến nghị vì gây spam UX
+  // Thay vào đó, lưu vào localStorage và đính kèm khi họ Book a Call
+  try {
+    const used = JSON.parse(localStorage.getItem('tlab_promos_used') || '[]');
+    used.push({ code, time: new Date().toISOString() });
+    localStorage.setItem('tlab_promos_used', JSON.stringify(used));
+  } catch(e) {}
+}
 </script>
 </body>
 </html>
