@@ -14,16 +14,18 @@
   --green:#4ECCA3;--green2:#2A9D8F;
   --gold:#F0C040;--gold2:#E88A00;
   --tele:#229ED9;--tele2:#1B86BB;
+  --red:#FF6B6B;
 }
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-serif;line-height:1.5;overflow-x:hidden}
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
 
-nav{position:sticky;top:0;z-index:200;background:rgba(8,11,18,.93);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:64px}
-.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+nav{position:sticky;top:0;z-index:200;background:rgba(8,11,18,.93);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:64px;gap:8px}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none;flex-shrink:0}
 .nav-logo-icon{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--green),var(--green2));display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;color:#0A0D14}
 .nav-logo-text{font-weight:800;font-size:15px;color:var(--text)}
 .nav-logo-text span{color:var(--green)}
+.nav-right{display:flex;gap:8px;flex-shrink:0}
 
 .btn{border:none;border-radius:11px;padding:10px 22px;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit;transition:opacity .2s,transform .15s;letter-spacing:.02em;text-decoration:none;display:inline-block}
 .btn:hover{opacity:.88;transform:translateY(-1px)}
@@ -32,6 +34,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(8,11,18,.93);backdrop-filt
 .btn-tele{background:linear-gradient(135deg,var(--tele),var(--tele2));color:#fff}
 .btn-ghost{background:transparent;border:1.5px solid var(--border2);color:var(--muted)}
 .btn-ghost:hover{border-color:var(--green);color:var(--green)}
+.btn-sm{padding:8px 16px;font-size:13px}
 .btn-full{width:100%;padding:14px 0;font-size:14px;border-radius:13px}
 .btn-lg{padding:14px 32px;font-size:15px}
 .btn-xl{padding:17px 42px;font-size:16px;border-radius:14px;box-shadow:0 12px 44px rgba(78,204,163,.3)}
@@ -77,30 +80,58 @@ nav{position:sticky;top:0;z-index:200;background:rgba(8,11,18,.93);backdrop-filt
 .cta-section{padding:70px 24px 84px;text-align:center;background:linear-gradient(180deg,transparent,#0A0F1A)}
 .cta-section h2{font-size:clamp(24px,4vw,36px);font-weight:900;letter-spacing:-.02em;margin-bottom:12px}
 .cta-section p{color:var(--muted);font-size:15px;margin-bottom:28px}
-.tele-handle{display:inline-flex;align-items:center;gap:8px;background:rgba(34,158,217,.1);border:1px solid rgba(34,158,217,.3);border-radius:12px;padding:10px 20px;color:var(--tele);font-weight:600;font-size:15px;margin-top:18px}
+.cta-buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
 
 footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;color:var(--dim);font-size:13px}
 
+/* MODAL */
 .overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.78);backdrop-filter:blur(7px);align-items:center;justify-content:center;padding:20px}
 .overlay.open{display:flex;animation:fadeIn .2s ease}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.modal{background:#12161F;border:1.5px solid var(--border2);border-radius:24px;width:100%;max-width:440px;box-shadow:0 28px 90px rgba(0,0,0,.65);position:relative;padding:40px 32px;text-align:center;animation:slideUp .25s ease}
+.modal{background:#12161F;border:1.5px solid var(--border2);border-radius:24px;width:100%;max-width:480px;max-height:92vh;overflow-y:auto;box-shadow:0 28px 90px rgba(0,0,0,.65);position:relative;padding:36px 32px;animation:slideUp .25s ease}
 @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.modal-close{position:absolute;top:14px;right:14px;background:var(--border2);border:none;color:var(--muted);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.modal-close{position:absolute;top:14px;right:14px;background:var(--border2);border:none;color:var(--muted);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:5}
 .modal-close:hover{background:#2A3050}
-.modal-icon{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--tele),var(--tele2));display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:36px;color:#fff}
-.modal-title{font-size:22px;font-weight:800;margin-bottom:10px}
-.modal-plan{background:rgba(78,204,163,.08);border:1px solid rgba(78,204,163,.22);border-radius:12px;padding:12px 18px;margin:18px 0;display:flex;justify-content:space-between;align-items:center;text-align:left}
-.modal-plan-name{color:var(--green);font-weight:600;font-size:14px}
-.modal-plan-price{font-weight:700;font-size:15px}
-.modal-desc{color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:22px}
-.modal-handle{font-size:17px;font-weight:700;color:var(--tele);letter-spacing:.02em;background:rgba(34,158,217,.08);border:1px solid rgba(34,158,217,.25);border-radius:10px;padding:10px 16px;margin-bottom:20px;display:inline-block}
+.modal-icon{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--green2));display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:30px;color:#0A0D14}
+.modal-title{font-size:22px;font-weight:800;text-align:center;margin-bottom:6px}
+.modal-subtitle{font-size:13px;color:var(--muted);text-align:center;margin-bottom:24px}
+
+.form-group{margin-bottom:14px}
+.form-label{display:block;font-size:11px;font-weight:700;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em}
+.form-input,.form-select,.form-textarea{width:100%;background:var(--bg);border:1.5px solid var(--border2);border-radius:12px;padding:12px 15px;color:var(--text);font-size:14px;font-family:inherit;outline:none;transition:border-color .2s}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--green)}
+.form-input.err,.form-select.err{border-color:var(--red)}
+.form-select{appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238B9FC4' d='M6 8L0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 15px center;padding-right:38px}
+.form-select option{background:#12161F}
+.form-textarea{resize:vertical;min-height:70px}
+.form-error{color:var(--red);font-size:12px;margin-top:4px;display:none}
+.form-error.show{display:block}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+.book-tabs{display:flex;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:4px;gap:4px;margin-bottom:22px}
+.book-tab{flex:1;padding:9px;border-radius:8px;border:none;cursor:pointer;font-weight:600;font-size:13px;font-family:inherit;transition:all .2s;background:transparent;color:var(--muted)}
+.book-tab.active{background:linear-gradient(135deg,var(--green),var(--green2));color:#0A0D14}
+
+.alt-actions{margin-top:18px;padding-top:18px;border-top:1px solid var(--border)}
+.alt-actions-label{font-size:11px;font-weight:700;color:var(--dim);letter-spacing:.08em;text-transform:uppercase;text-align:center;margin-bottom:10px}
+.alt-btn-row{display:flex;gap:8px}
+.alt-btn{flex:1;padding:10px;border-radius:10px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-weight:600;font-size:13px;cursor:pointer;font-family:inherit;text-align:center;text-decoration:none;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px}
+.alt-btn:hover{border-color:var(--tele);color:var(--tele)}
+
+.success-view{display:none;text-align:center;padding:16px 0}
+.success-view.show{display:block}
+.success-ico{font-size:56px;margin-bottom:14px}
+.success-ttl{font-size:22px;font-weight:800;color:var(--green);margin-bottom:10px}
+.success-desc{color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:22px}
+.success-desc strong{color:var(--text)}
 
 @media(max-width:640px){
   nav{padding:0 16px}
+  .nav-logo-text{font-size:14px}
   .hero{padding:56px 16px 60px}
-  .modal{padding:32px 22px}
+  .modal{padding:28px 22px;max-height:96vh}
   .section{padding:42px 16px}
+  .form-row{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -111,7 +142,9 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
     <div class="nav-logo-icon">T</div>
     <span class="nav-logo-text">The TLab <span>Mentorship</span></span>
   </a>
-  <a class="btn btn-tele" href="https://t.me/sieleckierika" target="_blank">📩 Liên hệ Telegram</a>
+  <div class="nav-right">
+    <button class="btn btn-primary btn-sm" onclick="openBookModal()">📞 Book a Call</button>
+  </div>
 </nav>
 
 <section class="hero">
@@ -120,8 +153,8 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
   <h1>Làm chủ thị trường với<br><span class="grad">The TLab Mentorship</span></h1>
   <p>Học từ mentor thực chiến — Nội dung 100% gốc — Cộng đồng trader chuyên nghiệp</p>
   <div class="hero-btns">
-    <a class="btn btn-primary btn-lg" href="#pricing">Xem bảng giá ↓</a>
-    <a class="btn btn-ghost btn-lg" href="https://t.me/sieleckierika" target="_blank">Hỏi đáp qua Telegram</a>
+    <button class="btn btn-primary btn-lg" onclick="openBookModal()">📞 Đặt lịch tư vấn</button>
+    <a class="btn btn-ghost btn-lg" href="#pricing">Xem bảng giá ↓</a>
   </div>
 </section>
 
@@ -149,7 +182,7 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
     <div class="plan-card">
       <div class="plan-dur" style="color:var(--green)">1 tháng</div>
       <div class="plan-name">Gói Tháng</div>
-      <div class="plan-price">1,079,000đ</div>
+      <div class="plan-price">1,299,000đ</div>
       <div class="plan-per"></div>
       <span class="plan-saving" style="visibility:hidden">-</span>
       <div class="plan-divider"></div>
@@ -159,16 +192,16 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
         <li><span class="check" style="color:var(--green)">✓</span>Tài liệu độc quyền hàng tháng</li>
         <li><span class="check" style="color:var(--green)">✓</span>Hỗ trợ trực tiếp từ mentor</li>
       </ul>
-      <button class="btn btn-primary btn-full" onclick="openContact('Gói Tháng')">Đăng ký Gói Tháng →</button>
+      <button class="btn btn-primary btn-full" onclick="openBookModal('Gói Tháng')">Đặt lịch tư vấn →</button>
     </div>
 
     <div class="plan-card">
       <div class="plan-badge badge-green">PHỔ BIẾN</div>
       <div class="plan-dur" style="color:var(--green)">3 tháng</div>
       <div class="plan-name">Gói Quý</div>
-      <div class="plan-price">2,719,000đ</div>
-      <div class="plan-per">≈ 906,000đ / tháng</div>
-      <span class="plan-saving">🎁 Tiết kiệm 518,000đ</span>
+      <div class="plan-price">3,259,000đ</div>
+      <div class="plan-per">≈ 1,086,000đ / tháng</div>
+      <span class="plan-saving">🎁 Tiết kiệm 638,000đ</span>
       <div class="plan-divider"></div>
       <ul class="plan-features">
         <li><span class="check" style="color:var(--green)">✓</span>Tất cả quyền lợi Gói Tháng</li>
@@ -176,16 +209,16 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
         <li><span class="check" style="color:var(--green)">✓</span>Tham gia session review trade</li>
         <li><span class="check" style="color:var(--green)">✓</span>Tài liệu chuyên sâu theo quý</li>
       </ul>
-      <button class="btn btn-primary btn-full" onclick="openContact('Gói Quý')">Đăng ký Gói Quý →</button>
+      <button class="btn btn-primary btn-full" onclick="openBookModal('Gói Quý')">Đặt lịch tư vấn →</button>
     </div>
 
     <div class="plan-card gold">
       <div class="plan-badge badge-gold">TỐT NHẤT</div>
       <div class="plan-dur" style="color:var(--gold)">12 tháng</div>
       <div class="plan-name">Gói Năm</div>
-      <div class="plan-price" style="color:var(--gold)">10,419,000đ</div>
-      <div class="plan-per">≈ 868,000đ / tháng</div>
-      <span class="plan-saving">🎁 Tiết kiệm 2,529,000đ</span>
+      <div class="plan-price" style="color:var(--gold)">12,499,000đ</div>
+      <div class="plan-per">≈ 1,042,000đ / tháng</div>
+      <span class="plan-saving">🎁 Tiết kiệm 3,089,000đ</span>
       <div class="plan-divider"></div>
       <ul class="plan-features">
         <li><span class="check" style="color:var(--gold)">✓</span>Tất cả quyền lợi Gói Quý</li>
@@ -193,62 +226,202 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
         <li><span class="check" style="color:var(--gold)">✓</span>Mentorship 1-1 hàng tháng</li>
         <li><span class="check" style="color:var(--gold)">✓</span>Quyền truy cập trọn đời cộng đồng</li>
       </ul>
-      <button class="btn btn-gold btn-full" onclick="openContact('Gói Năm')">Đăng ký Gói Năm →</button>
+      <button class="btn btn-gold btn-full" onclick="openBookModal('Gói Năm')">Đặt lịch tư vấn →</button>
     </div>
 
   </div>
-  <div class="pricing-note">💡 Bấm "Đăng ký" để liên hệ trực tiếp qua Telegram</div>
+  <div class="pricing-note">💡 Bấm "Đặt lịch tư vấn" để gửi yêu cầu trực tiếp về email mentor</div>
 </section>
 
 <section class="cta-section">
   <h2>Sẵn sàng bắt đầu hành trình?</h2>
-  <p>Nhắn tin trực tiếp qua Telegram để được tư vấn chi tiết</p>
-  <a class="btn btn-tele btn-xl" href="https://t.me/sieleckierika" target="_blank">📩 Nhắn tin qua Telegram</a>
-  <div class="tele-handle">@sieleckierika</div>
+  <p>Đặt lịch 1 buổi tư vấn miễn phí để được tư vấn cá nhân hoá</p>
+  <div class="cta-buttons">
+    <button class="btn btn-primary btn-xl" onclick="openBookModal()">📞 Book a Call ngay</button>
+  </div>
 </section>
 
 <footer>© 2025 The TLab Mentorship · Mọi quyền được bảo lưu</footer>
 
-<div class="overlay" id="contactModal" onclick="closeIfOverlay(event)">
+<!-- BOOK A CALL MODAL -->
+<div class="overlay" id="bookModal" onclick="closeIfOverlay(event)">
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">✕</button>
-    <div class="modal-icon">📩</div>
-    <div class="modal-title">Liên hệ để đăng ký</div>
-    <div class="modal-plan">
-      <span class="modal-plan-name" id="modalPlanName"></span>
-      <span class="modal-plan-price" id="modalPlanPrice"></span>
+
+    <div id="bookFormView">
+      <div class="modal-icon">📞</div>
+      <div class="modal-title">Đặt lịch tư vấn</div>
+      <div class="modal-subtitle">Điền form bên dưới — Mentor sẽ liên hệ trong 24 giờ</div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Họ tên *</label>
+          <input class="form-input" id="bName" placeholder="Nguyễn Văn A" oninput="ce('bName')"/>
+          <div class="form-error" id="errBName">Vui lòng nhập họ tên</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">SĐT / Zalo *</label>
+          <input class="form-input" id="bPhone" type="tel" placeholder="0901 234 567" oninput="ce('bPhone')"/>
+          <div class="form-error" id="errBPhone">SĐT không hợp lệ</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Telegram (tuỳ chọn)</label>
+        <input class="form-input" id="bTele" placeholder="@username"/>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Gói quan tâm *</label>
+        <select class="form-select" id="bPlan" onchange="ce('bPlan')">
+          <option value="">-- Chọn gói --</option>
+          <option value="Tư vấn chung">Chỉ tư vấn — chưa chọn gói</option>
+          <option value="Gói Tháng — 1,299,000đ">Gói Tháng — 1,299,000đ</option>
+          <option value="Gói Quý — 3,259,000đ">Gói Quý — 3,259,000đ</option>
+          <option value="Gói Năm — 12,499,000đ">Gói Năm — 12,499,000đ</option>
+        </select>
+        <div class="form-error" id="errBPlan">Vui lòng chọn gói</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Thời gian rảnh để gọi *</label>
+        <select class="form-select" id="bTime" onchange="ce('bTime')">
+          <option value="">-- Chọn khung giờ --</option>
+          <option value="Sáng (8h-11h)">Sáng (8h - 11h)</option>
+          <option value="Chiều (13h-17h)">Chiều (13h - 17h)</option>
+          <option value="Tối (19h-22h)">Tối (19h - 22h)</option>
+          <option value="Cuối tuần">Chỉ rảnh cuối tuần</option>
+          <option value="Linh hoạt">Linh hoạt — mentor chọn</option>
+        </select>
+        <div class="form-error" id="errBTime">Vui lòng chọn khung giờ</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Câu hỏi / mong muốn (tuỳ chọn)</label>
+        <textarea class="form-textarea" id="bNote" placeholder="Bạn đang gặp vấn đề gì trong trading? Mục tiêu của bạn là gì?"></textarea>
+      </div>
+
+      <button class="btn btn-primary btn-full" onclick="submitBooking()">📩 Gửi yêu cầu qua Email</button>
+
+      <div class="alt-actions">
+        <div class="alt-actions-label">Hoặc liên hệ trực tiếp</div>
+        <div class="alt-btn-row">
+          <a class="alt-btn" href="https://t.me/sieleckierika" target="_blank">📩 Telegram</a>
+          <a class="alt-btn" id="quickEmail" href="mailto:">✉️ Email</a>
+        </div>
+      </div>
     </div>
-    <div class="modal-desc">Nhắn tin trực tiếp qua Telegram để được tư vấn và xác nhận thanh toán.</div>
-    <div class="modal-handle">@sieleckierika</div>
-    <div>
-      <a class="btn btn-tele btn-lg" id="modalTeleBtn" href="https://t.me/sieleckierika" target="_blank">Mở Telegram →</a>
+
+    <div class="success-view" id="bookSuccess">
+      <div class="success-ico">✅</div>
+      <div class="success-ttl">Đã mở app email!</div>
+      <div class="success-desc">Kiểm tra app email của bạn — nội dung đã được soạn sẵn.<br>Bạn chỉ cần bấm <strong>"Gửi"</strong> là xong.<br><br>Mentor sẽ liên hệ lại trong vòng 24 giờ.</div>
+      <button class="btn btn-primary" onclick="closeModal()">Đóng</button>
     </div>
   </div>
 </div>
 
 <script>
-const PRICES = {
-  'Gói Tháng': '1,079,000đ',
-  'Gói Quý': '2,719,000đ',
-  'Gói Năm': '10,419,000đ'
-};
+// ════════════════════════════════════════════
+// ⚙️  THAY EMAIL CỦA BẠN VÀO ĐÂY
+// ════════════════════════════════════════════
+const OWNER_EMAIL = 'erikaz231208@gmail.com';
+// ════════════════════════════════════════════
 
-function openContact(planName) {
-  const price = PRICES[planName];
-  document.getElementById('modalPlanName').textContent = planName;
-  document.getElementById('modalPlanPrice').textContent = price;
-  const msg = encodeURIComponent('Chào mentor, mình muốn đăng ký ' + planName + ' — ' + price);
-  document.getElementById('modalTeleBtn').href = 'https://t.me/sieleckierika?text=' + msg;
-  document.getElementById('contactModal').classList.add('open');
+document.getElementById('quickEmail').href = 'mailto:' + OWNER_EMAIL + '?subject=' + encodeURIComponent('Hỏi về The TLab Mentorship');
+
+function openBookModal(plan) {
+  if (plan) {
+    const sel = document.getElementById('bPlan');
+    for (let o of sel.options) {
+      if (o.value.includes(plan)) sel.value = o.value;
+    }
+  }
+  document.getElementById('bookFormView').style.display = 'block';
+  document.getElementById('bookSuccess').classList.remove('show');
+  document.getElementById('bookModal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
+function v(id){ return (document.getElementById(id)?.value||'').trim(); }
+function ce(id){
+  const errId = 'err' + id.charAt(0).toUpperCase() + id.slice(1);
+  const e = document.getElementById(errId);
+  if(e) e.classList.remove('show');
+  document.getElementById(id)?.classList.remove('err');
+}
+function se(id, msg){
+  const errId = 'err' + id.charAt(0).toUpperCase() + id.slice(1);
+  const e = document.getElementById(errId);
+  if(e){ e.textContent = msg; e.classList.add('show'); }
+  document.getElementById(id)?.classList.add('err');
+}
+
+function submitBooking() {
+  const name  = v('bName');
+  const phone = v('bPhone');
+  const tele  = v('bTele');
+  const plan  = v('bPlan');
+  const time  = v('bTime');
+  const note  = v('bNote');
+
+  let ok = true;
+  if (!name)  { se('bName','Vui lòng nhập họ tên'); ok=false; }
+  if (!phone) { se('bPhone','Vui lòng nhập SĐT'); ok=false; }
+  else if (!/^(0|\+84)[0-9\s]{8,12}$/.test(phone)) { se('bPhone','SĐT không hợp lệ'); ok=false; }
+  if (!plan)  { se('bPlan','Vui lòng chọn gói'); ok=false; }
+  if (!time)  { se('bTime','Vui lòng chọn khung giờ'); ok=false; }
+  if (!ok) return;
+
+  // Tạo nội dung email
+  const subject = '[BOOK A CALL] ' + name + ' — ' + plan;
+  const body =
+`Xin chào Mentor,
+
+Em muốn đặt lịch tư vấn cho chương trình The TLab Mentorship.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+📋 THÔNG TIN LIÊN HỆ
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Họ tên: ${name}
+• SĐT / Zalo: ${phone}
+• Telegram: ${tele || '(không có)'}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+📦 NỘI DUNG
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Gói quan tâm: ${plan}
+• Khung giờ rảnh: ${time}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+💬 GHI CHÚ
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+${note || '(không có)'}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+Mong nhận được phản hồi sớm từ mentor.
+Trân trọng cảm ơn!`;
+
+  const mailto = 'mailto:' + OWNER_EMAIL +
+    '?subject=' + encodeURIComponent(subject) +
+    '&body=' + encodeURIComponent(body);
+
+  // Mở app email
+  window.location.href = mailto;
+
+  // Hiển thị success view sau 500ms
+  setTimeout(() => {
+    document.getElementById('bookFormView').style.display = 'none';
+    document.getElementById('bookSuccess').classList.add('show');
+  }, 500);
+}
+
 function closeModal() {
-  document.getElementById('contactModal').classList.remove('open');
+  document.getElementById('bookModal').classList.remove('open');
   document.body.style.overflow = '';
 }
 function closeIfOverlay(e) {
-  if (e.target === document.getElementById('contactModal')) closeModal();
+  if (e.target === document.getElementById('bookModal')) closeModal();
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 </script>
