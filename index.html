@@ -13,6 +13,7 @@
   --text:#E8EAF0;--muted:#8B9FC4;--dim:#4A5568;
   --green:#4ECCA3;--green2:#2A9D8F;
   --gold:#F0C040;--gold2:#E88A00;
+  --purple:#A78BFA;--purple2:#7C3AED;
   --tele:#229ED9;--tele2:#1B86BB;
   --red:#FF6B6B;
 }
@@ -20,16 +21,21 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-serif;line-height:1.5;overflow-x:hidden}
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
 
+.promo-active-banner{display:none;position:fixed;top:74px;left:50%;transform:translateX(-50%);z-index:150;background:linear-gradient(135deg,var(--green),var(--green2));color:#0A0D14;border-radius:12px;padding:10px 18px;font-weight:700;font-size:13px;box-shadow:0 8px 28px rgba(78,204,163,.35);animation:slideDown .3s ease}
+.promo-active-banner.show{display:flex;align-items:center;gap:8px}
+@keyframes slideDown{from{opacity:0;transform:translate(-50%,-12px)}to{opacity:1;transform:translate(-50%,0)}}
+.promo-active-banner button{background:rgba(10,13,20,.18);border:none;color:#0A0D14;width:22px;height:22px;border-radius:50%;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;font-weight:700}
+
 nav{position:sticky;top:0;z-index:200;background:rgba(8,11,18,.93);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:64px;gap:8px}
 .nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none;flex-shrink:0}
 .nav-logo-icon{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--green),var(--green2));display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;color:#0A0D14}
 .nav-logo-text{font-weight:800;font-size:15px;color:var(--text)}
 .nav-logo-text span{color:var(--green)}
-.nav-right{display:flex;gap:8px;flex-shrink:0}
 
 .btn{border:none;border-radius:11px;padding:10px 22px;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit;transition:opacity .2s,transform .15s;letter-spacing:.02em;text-decoration:none;display:inline-block}
 .btn:hover{opacity:.88;transform:translateY(-1px)}
 .btn-primary{background:linear-gradient(135deg,var(--green),var(--green2));color:#0A0D14}
+.btn-purple{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff}
 .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0A0D14}
 .btn-tele{background:linear-gradient(135deg,var(--tele),var(--tele2));color:#fff}
 .btn-ghost{background:transparent;border:1.5px solid var(--border2);color:var(--muted)}
@@ -59,23 +65,67 @@ nav{position:sticky;top:0;z-index:200;background:rgba(8,11,18,.93);backdrop-filt
 .feature-title{font-weight:700;font-size:15px;margin-bottom:7px}
 .feature-desc{color:var(--muted);font-size:13px;line-height:1.6}
 
-.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+/* ─────── TAB SWITCH ─────── */
+.tier-switch-wrap{display:flex;justify-content:center;margin-bottom:36px;padding:0 12px}
+.tier-switch{display:inline-flex;background:var(--bg2);border:1.5px solid var(--border);border-radius:16px;padding:6px;gap:6px;width:100%;max-width:560px;position:relative}
+.tier-tab{flex:1;padding:14px 18px;border-radius:11px;border:none;cursor:pointer;font-weight:700;font-size:14px;font-family:inherit;background:transparent;color:var(--muted);transition:all .25s ease;position:relative;display:flex;flex-direction:column;align-items:center;gap:3px}
+.tier-tab.active.ea{background:linear-gradient(135deg,var(--green),var(--green2));color:#0A0D14;box-shadow:0 4px 18px rgba(78,204,163,.25)}
+.tier-tab.active.c1{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;box-shadow:0 4px 18px rgba(167,139,250,.25)}
+.tier-tab-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.75}
+.tier-tab-name{font-size:15px;font-weight:800;letter-spacing:-.01em}
+.tier-tab:not(.active):hover{color:var(--text);background:rgba(255,255,255,.02)}
+
+/* ─────── TIER CONTENT ─────── */
+.tier-content{display:none;animation:fadeInUp .3s ease}
+.tier-content.active{display:block}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.tier-intro{text-align:center;margin-bottom:36px;max-width:600px;margin-left:auto;margin-right:auto}
+.tier-intro-tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:14px}
+.tier-intro-tag.ea{background:rgba(78,204,163,.1);border:1px solid rgba(78,204,163,.3);color:var(--green)}
+.tier-intro-tag.c1{background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.3);color:var(--purple)}
+.tier-intro-title{font-size:clamp(22px,4vw,28px);font-weight:900;letter-spacing:-.02em;margin-bottom:10px}
+.tier-intro-title.ea{background:linear-gradient(90deg,var(--green),var(--green2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.tier-intro-title.c1{background:linear-gradient(90deg,var(--purple),var(--purple2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.tier-intro-desc{color:var(--muted);font-size:15px;line-height:1.7}
+.tier-intro-desc strong{color:var(--text)}
+
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;max-width:680px;margin:0 auto}
 .plan-card{position:relative;background:var(--bg2);border:1.5px solid var(--border);border-radius:22px;padding:32px 28px;transition:all .2s}
 .plan-card.gold{border-color:rgba(240,192,64,.25);box-shadow:0 0 60px rgba(240,192,64,.07)}
+.plan-card.purple-card{border-color:rgba(167,139,250,.22);box-shadow:0 0 60px rgba(167,139,250,.06)}
 .plan-card:hover{transform:translateY(-4px)}
 .plan-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:800;letter-spacing:.12em;padding:4px 18px;border-radius:20px;white-space:nowrap;color:#0A0D14}
 .badge-green{background:linear-gradient(90deg,var(--green),var(--green2))}
 .badge-gold{background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.badge-purple{background:linear-gradient(90deg,var(--purple),var(--purple2));color:#fff}
 .plan-dur{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
 .plan-name{font-size:21px;font-weight:800;margin-bottom:16px}
 .plan-price{font-size:36px;font-weight:900;letter-spacing:-.03em}
+.plan-price-old{color:var(--dim);text-decoration:line-through;font-size:18px;font-weight:600;margin-bottom:2px;display:none}
+.plan-price-old.show{display:block}
 .plan-per{color:var(--muted);font-size:13px;margin-top:3px;margin-bottom:8px;min-height:18px}
 .plan-saving{display:inline-block;background:rgba(78,204,163,.1);border:1px solid rgba(78,204,163,.25);color:var(--green);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:20px;min-height:26px}
 .plan-divider{height:1px;background:var(--border);margin-bottom:20px}
 .plan-features{list-style:none;margin-bottom:24px}
 .plan-features li{display:flex;gap:9px;margin-bottom:10px;font-size:13px;color:#B0B8CC;line-height:1.4}
 .check{flex-shrink:0;font-weight:700}
-.pricing-note{text-align:center;margin-top:22px;color:var(--dim);font-size:13px}
+
+/* PROMO */
+.promo-section{max-width:480px;margin:36px auto 0;background:linear-gradient(135deg,rgba(78,204,163,.06),rgba(240,192,64,.04));border:1px dashed rgba(78,204,163,.3);border-radius:18px;padding:22px}
+.promo-title{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green);text-align:center;margin-bottom:4px}
+.promo-sub{text-align:center;color:var(--muted);font-size:13px;margin-bottom:16px}
+.promo-input-row{display:flex;gap:8px}
+.promo-input{flex:1;background:var(--bg);border:1.5px solid var(--border2);border-radius:11px;padding:13px 16px;color:var(--text);font-size:14px;font-family:inherit;font-weight:600;letter-spacing:.04em;text-transform:uppercase;outline:none;transition:border-color .2s}
+.promo-input:focus{border-color:var(--green)}
+.promo-input.err{border-color:var(--red)}
+.promo-input.ok{border-color:var(--green);background:rgba(78,204,163,.05)}
+.btn-promo{background:linear-gradient(135deg,var(--green),var(--green2));color:#0A0D14;border:none;border-radius:11px;padding:13px 22px;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit;transition:opacity .2s,transform .15s;white-space:nowrap}
+.btn-promo:hover{opacity:.88;transform:translateY(-1px)}
+.promo-msg{margin-top:12px;padding:10px 14px;border-radius:10px;font-size:13px;display:none}
+.promo-msg.show{display:block}
+.promo-msg.ok{background:rgba(78,204,163,.1);border:1px solid rgba(78,204,163,.3);color:var(--green)}
+.promo-msg.err{background:rgba(255,107,107,.1);border:1px solid rgba(255,107,107,.3);color:var(--red)}
 
 .cta-section{padding:70px 24px 84px;text-align:center;background:linear-gradient(180deg,transparent,#0A0F1A)}
 .cta-section h2{font-size:clamp(24px,4vw,36px);font-weight:900;letter-spacing:-.02em;margin-bottom:12px}
@@ -107,17 +157,11 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
 .form-error{color:var(--red);font-size:12px;margin-top:4px;display:none}
 .form-error.show{display:block}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-
-.book-tabs{display:flex;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:4px;gap:4px;margin-bottom:22px}
-.book-tab{flex:1;padding:9px;border-radius:8px;border:none;cursor:pointer;font-weight:600;font-size:13px;font-family:inherit;transition:all .2s;background:transparent;color:var(--muted)}
-.book-tab.active{background:linear-gradient(135deg,var(--green),var(--green2));color:#0A0D14}
-
 .alt-actions{margin-top:18px;padding-top:18px;border-top:1px solid var(--border)}
 .alt-actions-label{font-size:11px;font-weight:700;color:var(--dim);letter-spacing:.08em;text-transform:uppercase;text-align:center;margin-bottom:10px}
 .alt-btn-row{display:flex;gap:8px}
 .alt-btn{flex:1;padding:10px;border-radius:10px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-weight:600;font-size:13px;cursor:pointer;font-family:inherit;text-align:center;text-decoration:none;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px}
 .alt-btn:hover{border-color:var(--tele);color:var(--tele)}
-
 .success-view{display:none;text-align:center;padding:16px 0}
 .success-view.show{display:block}
 .success-ico{font-size:56px;margin-bottom:14px}
@@ -125,39 +169,15 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
 .success-desc{color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:22px}
 .success-desc strong{color:var(--text)}
 
-/* PROMO CODE */
-.promo-section{max-width:480px;margin:36px auto 0;background:linear-gradient(135deg,rgba(78,204,163,.06),rgba(240,192,64,.04));border:1px dashed rgba(78,204,163,.3);border-radius:18px;padding:22px}
-.promo-title{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green);text-align:center;margin-bottom:4px}
-.promo-sub{text-align:center;color:var(--muted);font-size:13px;margin-bottom:16px}
-.promo-input-row{display:flex;gap:8px}
-.promo-input{flex:1;background:var(--bg);border:1.5px solid var(--border2);border-radius:11px;padding:13px 16px;color:var(--text);font-size:14px;font-family:inherit;font-weight:600;letter-spacing:.04em;text-transform:uppercase;outline:none;transition:border-color .2s}
-.promo-input:focus{border-color:var(--green)}
-.promo-input.err{border-color:var(--red)}
-.promo-input.ok{border-color:var(--green);background:rgba(78,204,163,.05)}
-.btn-promo{background:linear-gradient(135deg,var(--green),var(--green2));color:#0A0D14;border:none;border-radius:11px;padding:13px 22px;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit;transition:opacity .2s,transform .15s;white-space:nowrap}
-.btn-promo:hover{opacity:.88;transform:translateY(-1px)}
-.btn-promo:disabled{opacity:.5;cursor:not-allowed;transform:none}
-.promo-msg{margin-top:12px;padding:10px 14px;border-radius:10px;font-size:13px;display:none}
-.promo-msg.show{display:block}
-.promo-msg.ok{background:rgba(78,204,163,.1);border:1px solid rgba(78,204,163,.3);color:var(--green)}
-.promo-msg.err{background:rgba(255,107,107,.1);border:1px solid rgba(255,107,107,.3);color:var(--red)}
-.promo-active-banner{display:none;position:fixed;top:74px;left:50%;transform:translateX(-50%);z-index:150;background:linear-gradient(135deg,var(--green),var(--green2));color:#0A0D14;border-radius:12px;padding:10px 18px;font-weight:700;font-size:13px;box-shadow:0 8px 28px rgba(78,204,163,.35);animation:slideDown .3s ease}
-.promo-active-banner.show{display:flex;align-items:center;gap:8px}
-@keyframes slideDown{from{opacity:0;transform:translate(-50%,-12px)}to{opacity:1;transform:translate(-50%,0)}}
-.promo-active-banner button{background:rgba(10,13,20,.18);border:none;color:#0A0D14;width:22px;height:22px;border-radius:50%;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;font-weight:700}
-
-.plan-price-old{color:var(--dim);text-decoration:line-through;font-size:18px;font-weight:600;margin-bottom:2px;display:none}
-.plan-price-old.show{display:block}
-.plan-card.has-discount .plan-price{color:var(--green)}
-.plan-card.gold.has-discount .plan-price{color:var(--gold)}
-
 @media(max-width:640px){
   nav{padding:0 16px}
-  .nav-logo-text{font-size:14px}
   .hero{padding:56px 16px 60px}
   .modal{padding:28px 22px;max-height:96vh}
   .section{padding:42px 16px}
   .form-row{grid-template-columns:1fr}
+  .tier-tab{padding:11px 12px}
+  .tier-tab-name{font-size:13px}
+  .tier-tab-label{font-size:10px}
 }
 </style>
 </head>
@@ -173,9 +193,7 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
     <div class="nav-logo-icon">T</div>
     <span class="nav-logo-text">The TLab <span>Mentorship</span></span>
   </a>
-  <div class="nav-right">
-    <button class="btn btn-primary btn-sm" onclick="openBookModal()">📞 Book a Call</button>
-  </div>
+  <button class="btn btn-primary btn-sm" onclick="openBookModal()">📞 Book a Call</button>
 </nav>
 
 <section class="hero">
@@ -204,69 +222,119 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
 
 <section class="section" id="pricing">
   <div class="section-header">
-    <div class="section-label">Đầu tư</div>
-    <h2 class="section-title">Chọn gói phù hợp</h2>
+    <div class="section-label">Lộ Trình</div>
+    <h2 class="section-title">Chọn con đường của bạn</h2>
   </div>
 
-  <div class="pricing-grid">
-
-    <div class="plan-card">
-      <div class="plan-dur" style="color:var(--green)">1 tháng</div>
-      <div class="plan-name">Gói Tháng</div>
-      <div class="plan-price-old" id="oldMonth">1,299,000đ</div>
-      <div class="plan-price" id="priceMonth">1,299,000đ</div>
-      <div class="plan-per"></div>
-      <span class="plan-saving" style="visibility:hidden">-</span>
-      <div class="plan-divider"></div>
-      <ul class="plan-features">
-        <li><span class="check" style="color:var(--green)">✓</span>Truy cập toàn bộ nội dung mentorship</li>
-        <li><span class="check" style="color:var(--green)">✓</span>Cộng đồng trading private</li>
-        <li><span class="check" style="color:var(--green)">✓</span>Tài liệu độc quyền hàng tháng</li>
-        <li><span class="check" style="color:var(--green)">✓</span>Hỗ trợ trực tiếp từ mentor</li>
-      </ul>
-      <button class="btn btn-primary btn-full" onclick="openBookModal('Gói Tháng')">Đặt lịch tư vấn →</button>
+  <!-- ─────────── TAB SWITCHER ─────────── -->
+  <div class="tier-switch-wrap">
+    <div class="tier-switch">
+      <button class="tier-tab ea active" id="tabEA" onclick="switchTier('ea')">
+        <span class="tier-tab-label">📚 Khám phá</span>
+        <span class="tier-tab-name">Early Access</span>
+      </button>
+      <button class="tier-tab c1" id="tabC1" onclick="switchTier('c1')">
+        <span class="tier-tab-label">🚀 Bứt phá</span>
+        <span class="tier-tab-name">Coaching 1-1</span>
+      </button>
     </div>
-
-    <div class="plan-card">
-      <div class="plan-badge badge-green">PHỔ BIẾN</div>
-      <div class="plan-dur" style="color:var(--green)">3 tháng</div>
-      <div class="plan-name">Gói Quý</div>
-      <div class="plan-price-old" id="oldQuarter">3,259,000đ</div>
-      <div class="plan-price" id="priceQuarter">3,259,000đ</div>
-      <div class="plan-per" id="perQuarter">≈ 1,086,000đ / tháng</div>
-      <span class="plan-saving" id="saveQuarter">🎁 Tiết kiệm 638,000đ</span>
-      <div class="plan-divider"></div>
-      <ul class="plan-features">
-        <li><span class="check" style="color:var(--green)">✓</span>Tất cả quyền lợi Gói Tháng</li>
-        <li><span class="check" style="color:var(--green)">✓</span>Ưu tiên hỗ trợ 1-1</li>
-        <li><span class="check" style="color:var(--green)">✓</span>Tham gia session review trade</li>
-        <li><span class="check" style="color:var(--green)">✓</span>Tài liệu chuyên sâu theo quý</li>
-      </ul>
-      <button class="btn btn-primary btn-full" onclick="openBookModal('Gói Quý')">Đặt lịch tư vấn →</button>
-    </div>
-
-    <div class="plan-card gold">
-      <div class="plan-badge badge-gold">TỐT NHẤT</div>
-      <div class="plan-dur" style="color:var(--gold)">12 tháng</div>
-      <div class="plan-name">Gói Năm</div>
-      <div class="plan-price-old" id="oldYear">12,499,000đ</div>
-      <div class="plan-price" style="color:var(--gold)" id="priceYear">12,499,000đ</div>
-      <div class="plan-per" id="perYear">≈ 1,042,000đ / tháng</div>
-      <span class="plan-saving" id="saveYear">🎁 Tiết kiệm 3,089,000đ</span>
-      <div class="plan-divider"></div>
-      <ul class="plan-features">
-        <li><span class="check" style="color:var(--gold)">✓</span>Tất cả quyền lợi Gói Quý</li>
-        <li><span class="check" style="color:var(--gold)">✓</span>Roadmap cá nhân hoá</li>
-        <li><span class="check" style="color:var(--gold)">✓</span>Mentorship 1-1 hàng tháng</li>
-        <li><span class="check" style="color:var(--gold)">✓</span>Quyền truy cập trọn đời cộng đồng</li>
-      </ul>
-      <button class="btn btn-gold btn-full" onclick="openBookModal('Gói Năm')">Đặt lịch tư vấn →</button>
-    </div>
-
   </div>
-  <div class="pricing-note">💡 Bấm "Đặt lịch tư vấn" để gửi yêu cầu trực tiếp về email mentor</div>
 
-  <!-- PROMO CODE -->
+  <!-- ─────────── EARLY ACCESS ─────────── -->
+  <div class="tier-content active" id="contentEA">
+    <div class="tier-intro">
+      <div class="tier-intro-tag ea">📚 Gói Khám Phá</div>
+      <h3 class="tier-intro-title ea">Early Access</h3>
+      <p class="tier-intro-desc">Dành cho người muốn <strong>nghiên cứu sâu</strong> và <strong>tự khám phá</strong> những kiến thức trading mới nhất. Bạn được tiếp cận toàn bộ tài liệu, framework ICT, và cộng đồng — học theo nhịp độ riêng, đào sâu từng concept đến gốc.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="plan-card">
+        <div class="plan-dur" style="color:var(--green)">1 tháng</div>
+        <div class="plan-name">Gói Tháng</div>
+        <div class="plan-price-old" id="oldEAMonth">1,349,000đ</div>
+        <div class="plan-price" id="priceEAMonth">1,349,000đ</div>
+        <div class="plan-per" id="perEAMonth"></div>
+        <span class="plan-saving" style="visibility:hidden">-</span>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="check" style="color:var(--green)">✓</span>Truy cập toàn bộ kho tài liệu ICT gốc</li>
+          <li><span class="check" style="color:var(--green)">✓</span>Cộng đồng trading private</li>
+          <li><span class="check" style="color:var(--green)">✓</span>Cập nhật content mới hàng tuần</li>
+          <li><span class="check" style="color:var(--green)">✓</span>Hỗ trợ Q&A qua kênh chung</li>
+        </ul>
+        <button class="btn btn-primary btn-full" onclick="openBookModal('EA - Gói Tháng')">Đăng ký Gói Tháng →</button>
+      </div>
+
+      <div class="plan-card gold">
+        <div class="plan-badge badge-gold">TỐT NHẤT</div>
+        <div class="plan-dur" style="color:var(--gold)">12 tháng</div>
+        <div class="plan-name">Gói Năm</div>
+        <div class="plan-price-old" id="oldEAYear">12,699,000đ</div>
+        <div class="plan-price" style="color:var(--gold)" id="priceEAYear">12,699,000đ</div>
+        <div class="plan-per" id="perEAYear">≈ 1,058,000đ / tháng</div>
+        <span class="plan-saving" id="saveEAYear">🎁 Tiết kiệm 3,489,000đ</span>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="check" style="color:var(--gold)">✓</span>Tất cả quyền lợi Gói Tháng</li>
+          <li><span class="check" style="color:var(--gold)">✓</span>Roadmap học tập 12 tháng có sẵn</li>
+          <li><span class="check" style="color:var(--gold)">✓</span>Access trọn đời các tài liệu đã phát hành</li>
+          <li><span class="check" style="color:var(--gold)">✓</span>Quyền truy cập cộng đồng vĩnh viễn</li>
+        </ul>
+        <button class="btn btn-gold btn-full" onclick="openBookModal('EA - Gói Năm')">Đăng ký Gói Năm →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────── COACHING 1-1 ─────────── -->
+  <div class="tier-content" id="contentC1">
+    <div class="tier-intro">
+      <div class="tier-intro-tag c1">🚀 Gói Bứt Phá</div>
+      <h3 class="tier-intro-title c1">Coaching 1-1</h3>
+      <p class="tier-intro-desc">Dành cho người muốn <strong>vượt lên số đông nhanh chóng</strong> — không có thời gian để mò mẫm. Bạn được mentor trực tiếp, sửa từng setup, review chiến lược cá nhân, và rút ngắn 70% thời gian tự học.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="plan-card purple-card">
+        <div class="plan-dur" style="color:var(--purple)">1 tháng</div>
+        <div class="plan-name">Gói Tháng</div>
+        <div class="plan-price-old" id="oldC1Month">2,699,000đ</div>
+        <div class="plan-price" id="priceC1Month">2,699,000đ</div>
+        <div class="plan-per" id="perC1Month"></div>
+        <span class="plan-saving" style="visibility:hidden">-</span>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="check" style="color:var(--purple)">✓</span>Tất cả quyền lợi Early Access</li>
+          <li><span class="check" style="color:var(--purple)">✓</span>2 buổi mentorship 1-1 / tháng</li>
+          <li><span class="check" style="color:var(--purple)">✓</span>Review trade cá nhân hàng tuần</li>
+          <li><span class="check" style="color:var(--purple)">✓</span>Ưu tiên hỗ trợ trực tiếp 24/7</li>
+        </ul>
+        <button class="btn btn-purple btn-full" onclick="openBookModal('C1 - Gói Tháng')">Đăng ký Gói Tháng →</button>
+      </div>
+
+      <div class="plan-card purple-card">
+        <div class="plan-badge badge-purple">PHỔ BIẾN</div>
+        <div class="plan-dur" style="color:var(--purple)">3 tháng</div>
+        <div class="plan-name">Gói Quý</div>
+        <div class="plan-price-old" id="oldC1Quarter">7,559,000đ</div>
+        <div class="plan-price" id="priceC1Quarter">7,559,000đ</div>
+        <div class="plan-per" id="perC1Quarter">≈ 2,520,000đ / tháng</div>
+        <span class="plan-saving" id="saveC1Quarter">🎁 Tiết kiệm 538,000đ</span>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="check" style="color:var(--purple)">✓</span>Tất cả quyền lợi Gói Tháng</li>
+          <li><span class="check" style="color:var(--purple)">✓</span>Roadmap cá nhân hoá theo trình độ</li>
+          <li><span class="check" style="color:var(--purple)">✓</span>Phân tích psychology cá nhân</li>
+          <li><span class="check" style="color:var(--purple)">✓</span>Build hệ thống trading riêng cho bạn</li>
+        </ul>
+        <button class="btn btn-purple btn-full" onclick="openBookModal('C1 - Gói Quý')">Đăng ký Gói Quý →</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;color:var(--dim);font-size:13px;margin-top:24px">💡 Bấm "Đăng ký" để gửi yêu cầu trực tiếp về email mentor</div>
+
+  <!-- PROMO -->
   <div class="promo-section">
     <div class="promo-title">🎟️ Có mã khuyến mãi?</div>
     <div class="promo-sub">Nhập mã giảm giá nếu bạn có</div>
@@ -321,9 +389,14 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
         <select class="form-select" id="bPlan" onchange="ce('bPlan')">
           <option value="">-- Chọn gói --</option>
           <option value="Tư vấn chung">Chỉ tư vấn — chưa chọn gói</option>
-          <option value="Gói Tháng — 1,299,000đ">Gói Tháng — 1,299,000đ</option>
-          <option value="Gói Quý — 3,259,000đ">Gói Quý — 3,259,000đ</option>
-          <option value="Gói Năm — 12,499,000đ">Gói Năm — 12,499,000đ</option>
+          <optgroup label="📚 Early Access">
+            <option value="EA - Gói Tháng — 1,349,000đ">EA — Gói Tháng (1,349,000đ)</option>
+            <option value="EA - Gói Năm — 12,699,000đ">EA — Gói Năm (12,699,000đ)</option>
+          </optgroup>
+          <optgroup label="🚀 Coaching 1-1">
+            <option value="C1 - Gói Tháng — 2,699,000đ">C1 — Gói Tháng (2,699,000đ)</option>
+            <option value="C1 - Gói Quý — 7,559,000đ">C1 — Gói Quý (7,559,000đ)</option>
+          </optgroup>
         </select>
         <div class="form-error" id="errBPlan">Vui lòng chọn gói</div>
       </div>
@@ -377,22 +450,194 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
 </div>
 
 <script>
-// ════════════════════════════════════════════
-// ⚙️  THAY EMAIL CỦA BẠN VÀO ĐÂY
-// ════════════════════════════════════════════
 const OWNER_EMAIL = 'erikaz231208@gmail.com';
-// ════════════════════════════════════════════
-
 document.getElementById('quickEmail').href = 'mailto:' + OWNER_EMAIL + '?subject=' + encodeURIComponent('Hỏi về The TLab Mentorship');
 
+// ════════════════════════════════════════════
+// TAB SWITCHER
+// ════════════════════════════════════════════
+function switchTier(tier) {
+  document.querySelectorAll('.tier-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tier-tab').forEach(el => el.classList.remove('active'));
+
+  if (tier === 'ea') {
+    document.getElementById('contentEA').classList.add('active');
+    document.getElementById('tabEA').classList.add('active');
+  } else {
+    document.getElementById('contentC1').classList.add('active');
+    document.getElementById('tabC1').classList.add('active');
+  }
+}
+
+// ════════════════════════════════════════════
+// PROMO CODES
+// ════════════════════════════════════════════
+const PROMO_CODES = {
+  'TL15%': { discount: 15, label: 'Giảm 15%' }
+};
+
+const BASE_PRICES = {
+  EAMonth:   { price: 1349000,  name: 'EA - Gói Tháng' },
+  EAYear:    { price: 12699000, name: 'EA - Gói Năm' },
+  C1Month:   { price: 2699000,  name: 'C1 - Gói Tháng' },
+  C1Quarter: { price: 7559000,  name: 'C1 - Gói Quý' }
+};
+
+let activePromo = null;
+
+function fmtVND(n){ return Math.round(n).toLocaleString('vi-VN') + 'đ'; }
+
+function resetPromoMsg() {
+  const msg = document.getElementById('promoMsg');
+  msg.classList.remove('show','ok','err');
+  document.getElementById('promoInput').classList.remove('err','ok');
+}
+
+function applyPromo() {
+  const input = document.getElementById('promoInput');
+  const code  = input.value.trim().toUpperCase();
+  if (!code) { showPromoMsg('Vui lòng nhập mã', 'err'); input.classList.add('err'); return; }
+  const matchedKey = Object.keys(PROMO_CODES).find(k => k.toUpperCase() === code);
+  if (!matchedKey) {
+    showPromoMsg('❌ Mã không hợp lệ hoặc đã hết hạn', 'err');
+    input.classList.add('err');
+    activePromo = null;
+    document.getElementById('promoBanner').classList.remove('show');
+    updatePrices();
+    return;
+  }
+  const promo = PROMO_CODES[matchedKey];
+  activePromo = { code: matchedKey, ...promo };
+  input.classList.remove('err');
+  input.classList.add('ok');
+  showPromoMsg('✅ Đã áp dụng mã ' + matchedKey + ' — ' + promo.label, 'ok');
+  updatePrices();
+  showBanner(matchedKey, promo.discount);
+  sendPromoNotification(matchedKey);
+}
+
+function applyPromoInModal() {
+  const input = document.getElementById('bPromo');
+  const status = document.getElementById('bPromoStatus');
+  const err = document.getElementById('errBPromo');
+  const code = input.value.trim().toUpperCase();
+  if (!code) { err.textContent = 'Vui lòng nhập mã'; err.classList.add('show'); input.classList.add('err'); return; }
+  const matchedKey = Object.keys(PROMO_CODES).find(k => k.toUpperCase() === code);
+  if (!matchedKey) {
+    err.textContent = '❌ Mã không hợp lệ hoặc đã hết hạn';
+    err.classList.add('show');
+    input.classList.add('err');
+    status.style.display = 'none';
+    activePromo = null;
+    document.getElementById('promoBanner').classList.remove('show');
+    updatePrices();
+    return;
+  }
+  const promo = PROMO_CODES[matchedKey];
+  activePromo = { code: matchedKey, ...promo };
+  input.classList.remove('err');
+  err.classList.remove('show');
+  status.style.display = 'block';
+  status.innerHTML = '✅ Đã áp dụng <strong>' + matchedKey + '</strong> — ' + promo.label;
+  const mainInput = document.getElementById('promoInput');
+  mainInput.value = matchedKey;
+  mainInput.classList.remove('err');
+  mainInput.classList.add('ok');
+  showPromoMsg('✅ Đã áp dụng mã ' + matchedKey + ' — ' + promo.label, 'ok');
+  showBanner(matchedKey, promo.discount);
+  updatePrices();
+  sendPromoNotification(matchedKey);
+}
+
+function showPromoMsg(text, type) {
+  const msg = document.getElementById('promoMsg');
+  msg.textContent = text;
+  msg.classList.remove('ok','err');
+  msg.classList.add(type, 'show');
+}
+
+function showBanner(code, pct) {
+  document.getElementById('promoBannerCode').textContent = code;
+  document.getElementById('promoBannerPct').textContent = pct + '%';
+  document.getElementById('promoBanner').classList.add('show');
+}
+
+function removePromo() {
+  activePromo = null;
+  document.getElementById('promoBanner').classList.remove('show');
+  document.getElementById('promoInput').value = '';
+  document.getElementById('promoInput').classList.remove('ok','err');
+  document.getElementById('promoMsg').classList.remove('show');
+  const bp = document.getElementById('bPromo');
+  if (bp) { bp.value=''; bp.classList.remove('ok','err'); }
+  const bs = document.getElementById('bPromoStatus');
+  if (bs) bs.style.display = 'none';
+  updatePrices();
+}
+
+function updatePrices() {
+  const factor = activePromo ? (1 - activePromo.discount / 100) : 1;
+
+  const eaM = Math.round(BASE_PRICES.EAMonth.price * factor);
+  document.getElementById('priceEAMonth').textContent = fmtVND(eaM);
+  toggleOld('oldEAMonth', BASE_PRICES.EAMonth.price);
+
+  const eaY = Math.round(BASE_PRICES.EAYear.price * factor);
+  document.getElementById('priceEAYear').textContent = fmtVND(eaY);
+  document.getElementById('perEAYear').textContent = '≈ ' + fmtVND(eaY / 12) + ' / tháng';
+  document.getElementById('saveEAYear').innerHTML = activePromo
+    ? '🎁 Tiết kiệm thêm ' + fmtVND(BASE_PRICES.EAYear.price - eaY) + ' nhờ mã ' + activePromo.code
+    : '🎁 Tiết kiệm 3,489,000đ';
+  toggleOld('oldEAYear', BASE_PRICES.EAYear.price);
+
+  const c1M = Math.round(BASE_PRICES.C1Month.price * factor);
+  document.getElementById('priceC1Month').textContent = fmtVND(c1M);
+  toggleOld('oldC1Month', BASE_PRICES.C1Month.price);
+
+  const c1Q = Math.round(BASE_PRICES.C1Quarter.price * factor);
+  document.getElementById('priceC1Quarter').textContent = fmtVND(c1Q);
+  document.getElementById('perC1Quarter').textContent = '≈ ' + fmtVND(c1Q / 3) + ' / tháng';
+  document.getElementById('saveC1Quarter').innerHTML = activePromo
+    ? '🎁 Tiết kiệm thêm ' + fmtVND(BASE_PRICES.C1Quarter.price - c1Q) + ' nhờ mã ' + activePromo.code
+    : '🎁 Tiết kiệm 538,000đ';
+  toggleOld('oldC1Quarter', BASE_PRICES.C1Quarter.price);
+
+  const sel = document.getElementById('bPlan');
+  if (sel) {
+    sel.querySelectorAll('option').forEach(o => {
+      if (o.value.startsWith('EA - Gói Tháng')) { o.value = 'EA - Gói Tháng — ' + fmtVND(eaM); o.textContent = 'EA — Gói Tháng (' + fmtVND(eaM) + ')'; }
+      else if (o.value.startsWith('EA - Gói Năm')) { o.value = 'EA - Gói Năm — ' + fmtVND(eaY); o.textContent = 'EA — Gói Năm (' + fmtVND(eaY) + ')'; }
+      else if (o.value.startsWith('C1 - Gói Tháng')) { o.value = 'C1 - Gói Tháng — ' + fmtVND(c1M); o.textContent = 'C1 — Gói Tháng (' + fmtVND(c1M) + ')'; }
+      else if (o.value.startsWith('C1 - Gói Quý')) { o.value = 'C1 - Gói Quý — ' + fmtVND(c1Q); o.textContent = 'C1 — Gói Quý (' + fmtVND(c1Q) + ')'; }
+    });
+  }
+}
+
+function toggleOld(id, originalPrice) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (activePromo) { el.textContent = fmtVND(originalPrice); el.classList.add('show'); }
+  else { el.classList.remove('show'); }
+}
+
+function sendPromoNotification(code) {
+  try {
+    const used = JSON.parse(localStorage.getItem('tlab_promos_used') || '[]');
+    used.push({ code, time: new Date().toISOString() });
+    localStorage.setItem('tlab_promos_used', JSON.stringify(used));
+  } catch(e) {}
+}
+
+// ════════════════════════════════════════════
+// BOOK A CALL
+// ════════════════════════════════════════════
 function openBookModal(plan) {
   if (plan) {
     const sel = document.getElementById('bPlan');
     for (let o of sel.options) {
-      if (o.value.includes(plan)) sel.value = o.value;
+      if (o.value.startsWith(plan)) sel.value = o.value;
     }
   }
-  // Đồng bộ mã promo nếu đã áp dụng
   const bPromo = document.getElementById('bPromo');
   const bStatus = document.getElementById('bPromoStatus');
   if (activePromo) {
@@ -441,11 +686,7 @@ function submitBooking() {
   if (!time)  { se('bTime','Vui lòng chọn khung giờ'); ok=false; }
   if (!ok) return;
 
-  // Tạo nội dung email
-  const promoLine = activePromo
-    ? `\n• Mã giảm giá: ${activePromo.code} (${activePromo.label})`
-    : '';
-
+  const promoLine = activePromo ? `\n• Mã giảm giá: ${activePromo.code} (${activePromo.label})` : '';
   const subject = activePromo
     ? '[BOOK A CALL] ' + name + ' — ' + plan + ' [MÃ ' + activePromo.code + ']'
     : '[BOOK A CALL] ' + name + ' — ' + plan;
@@ -480,11 +721,8 @@ Trân trọng cảm ơn!`;
   const mailto = 'mailto:' + OWNER_EMAIL +
     '?subject=' + encodeURIComponent(subject) +
     '&body=' + encodeURIComponent(body);
-
-  // Mở app email
   window.location.href = mailto;
 
-  // Hiển thị success view sau 500ms
   setTimeout(() => {
     document.getElementById('bookFormView').style.display = 'none';
     document.getElementById('bookSuccess').classList.add('show');
@@ -498,208 +736,7 @@ function closeModal() {
 function closeIfOverlay(e) {
   if (e.target === document.getElementById('bookModal')) closeModal();
 }
-function applyPromoInModal() {
-  const input = document.getElementById('bPromo');
-  const status = document.getElementById('bPromoStatus');
-  const err = document.getElementById('errBPromo');
-  const code = input.value.trim().toUpperCase();
-
-  if (!code) {
-    err.textContent = 'Vui lòng nhập mã';
-    err.classList.add('show');
-    input.classList.add('err');
-    return;
-  }
-
-  const matchedKey = Object.keys(PROMO_CODES).find(k => k.toUpperCase() === code);
-
-  if (!matchedKey) {
-    err.textContent = '❌ Mã không hợp lệ hoặc đã hết hạn';
-    err.classList.add('show');
-    input.classList.add('err');
-    status.style.display = 'none';
-    activePromo = null;
-    document.getElementById('promoBanner').classList.remove('show');
-    updatePrices();
-    return;
-  }
-
-  // Hợp lệ
-  const promo = PROMO_CODES[matchedKey];
-  activePromo = { code: matchedKey, ...promo };
-  input.classList.remove('err');
-  err.classList.remove('show');
-  status.style.display = 'block';
-  status.innerHTML = '✅ Đã áp dụng <strong>' + matchedKey + '</strong> — ' + promo.label;
-
-  // Đồng bộ với ô promo ngoài
-  const mainInput = document.getElementById('promoInput');
-  mainInput.value = matchedKey;
-  mainInput.classList.remove('err');
-  mainInput.classList.add('ok');
-  showPromoMsg('✅ Đã áp dụng mã ' + matchedKey + ' — ' + promo.label, 'ok');
-  showBanner(matchedKey, promo.discount);
-  updatePrices();
-  sendPromoNotification(matchedKey);
-}
-
-// ════════════════════════════════════════════
-// 🎟️  PROMO CODES
-// ════════════════════════════════════════════
-const PROMO_CODES = {
-  'TL15%': { discount: 15, label: 'Giảm 15%' }
-  // Có thể thêm mã khác sau, vd: 'NEWBIE10': { discount: 10, label: 'Giảm 10%' }
-};
-
-const BASE_PRICES = {
-  month:   { price: 1299000, name: 'Gói Tháng' },
-  quarter: { price: 3259000, name: 'Gói Quý',  baseMonthly: 1299000 },
-  year:    { price: 12499000, name: 'Gói Năm', baseMonthly: 1299000 }
-};
-
-let activePromo = null;
-
-function fmtVND(n){ return Math.round(n).toLocaleString('vi-VN') + 'đ'; }
-
-function resetPromoMsg() {
-  const msg = document.getElementById('promoMsg');
-  msg.classList.remove('show','ok','err');
-  document.getElementById('promoInput').classList.remove('err','ok');
-}
-
-function applyPromo() {
-  const input = document.getElementById('promoInput');
-  const code  = input.value.trim().toUpperCase();
-  const msg   = document.getElementById('promoMsg');
-
-  if (!code) {
-    showPromoMsg('Vui lòng nhập mã', 'err');
-    input.classList.add('err');
-    return;
-  }
-
-  // Tìm mã (so sánh không phân biệt hoa thường)
-  const matchedKey = Object.keys(PROMO_CODES).find(k => k.toUpperCase() === code);
-
-  if (!matchedKey) {
-    showPromoMsg('❌ Mã không hợp lệ hoặc đã hết hạn', 'err');
-    input.classList.add('err');
-    activePromo = null;
-    updatePrices();
-    return;
-  }
-
-  // Mã hợp lệ
-  const promo = PROMO_CODES[matchedKey];
-  activePromo = { code: matchedKey, ...promo };
-  input.classList.remove('err');
-  input.classList.add('ok');
-  showPromoMsg('✅ Đã áp dụng mã ' + matchedKey + ' — ' + promo.label, 'ok');
-
-  updatePrices();
-  showBanner(matchedKey, promo.discount);
-  sendPromoNotification(matchedKey);
-}
-
-function showPromoMsg(text, type) {
-  const msg = document.getElementById('promoMsg');
-  msg.textContent = text;
-  msg.classList.remove('ok','err');
-  msg.classList.add(type, 'show');
-}
-
-function showBanner(code, pct) {
-  document.getElementById('promoBannerCode').textContent = code;
-  document.getElementById('promoBannerPct').textContent = pct + '%';
-  document.getElementById('promoBanner').classList.add('show');
-}
-
-function removePromo() {
-  activePromo = null;
-  document.getElementById('promoBanner').classList.remove('show');
-  document.getElementById('promoInput').value = '';
-  document.getElementById('promoInput').classList.remove('ok','err');
-  document.getElementById('promoMsg').classList.remove('show');
-  updatePrices();
-}
-
-function updatePrices() {
-  const factor = activePromo ? (1 - activePromo.discount / 100) : 1;
-
-  // Tháng
-  const newMonth = Math.round(BASE_PRICES.month.price * factor);
-  document.getElementById('priceMonth').textContent = fmtVND(newMonth);
-  toggleOld('oldMonth', BASE_PRICES.month.price, activePromo);
-
-  // Quý
-  const newQuarter = Math.round(BASE_PRICES.quarter.price * factor);
-  document.getElementById('priceQuarter').textContent = fmtVND(newQuarter);
-  document.getElementById('perQuarter').textContent = '≈ ' + fmtVND(newQuarter / 3) + ' / tháng';
-  const saveQuarter = BASE_PRICES.quarter.baseMonthly * 3 * factor - newQuarter;
-  document.getElementById('saveQuarter').innerHTML = activePromo
-    ? '🎁 Tiết kiệm thêm ' + fmtVND(BASE_PRICES.quarter.price - newQuarter) + ' nhờ mã ' + activePromo.code
-    : '🎁 Tiết kiệm 638,000đ';
-  toggleOld('oldQuarter', BASE_PRICES.quarter.price, activePromo);
-
-  // Năm
-  const newYear = Math.round(BASE_PRICES.year.price * factor);
-  document.getElementById('priceYear').textContent = fmtVND(newYear);
-  document.getElementById('perYear').textContent = '≈ ' + fmtVND(newYear / 12) + ' / tháng';
-  document.getElementById('saveYear').innerHTML = activePromo
-    ? '🎁 Tiết kiệm thêm ' + fmtVND(BASE_PRICES.year.price - newYear) + ' nhờ mã ' + activePromo.code
-    : '🎁 Tiết kiệm 3,089,000đ';
-  toggleOld('oldYear', BASE_PRICES.year.price, activePromo);
-
-  // Cập nhật dropdown trong modal
-  const sel = document.getElementById('bPlan');
-  if (sel) {
-    const opts = sel.querySelectorAll('option');
-    opts.forEach(o => {
-      if (o.value.startsWith('Gói Tháng')) o.value = 'Gói Tháng — ' + fmtVND(newMonth), o.textContent = 'Gói Tháng — ' + fmtVND(newMonth);
-      else if (o.value.startsWith('Gói Quý')) o.value = 'Gói Quý — ' + fmtVND(newQuarter), o.textContent = 'Gói Quý — ' + fmtVND(newQuarter);
-      else if (o.value.startsWith('Gói Năm')) o.value = 'Gói Năm — ' + fmtVND(newYear), o.textContent = 'Gói Năm — ' + fmtVND(newYear);
-    });
-  }
-}
-
-function toggleOld(id, originalPrice, promo) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  if (promo) {
-    el.textContent = fmtVND(originalPrice);
-    el.classList.add('show');
-  } else {
-    el.classList.remove('show');
-  }
-}
-
-function sendPromoNotification(code) {
-  // Gửi email thông báo về owner khi có người nhập mã thành công
-  const subject = '[PROMO USED] Có người vừa nhập mã ' + code;
-  const body =
-`Xin chào,
-
-Có người vừa nhập mã khuyến mãi trên website The TLab Mentorship.
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━
-🎟️ THÔNG TIN MÃ
-━━━━━━━━━━━━━━━━━━━━━━━━━━
-• Mã đã nhập: ${code}
-• Thời gian: ${new Date().toLocaleString('vi-VN')}
-• Trang: ${window.location.href}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━
-Họ chưa book a call, chỉ mới áp dụng mã.
-Hệ thống tự động gửi email này.`;
-
-  // Mở email ở tab/window ẩn — KHÔNG khuyến nghị vì gây spam UX
-  // Thay vào đó, lưu vào localStorage và đính kèm khi họ Book a Call
-  try {
-    const used = JSON.parse(localStorage.getItem('tlab_promos_used') || '[]');
-    used.push({ code, time: new Date().toISOString() });
-    localStorage.setItem('tlab_promos_used', JSON.stringify(used));
-  } catch(e) {}
-}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 </script>
 </body>
 </html>
