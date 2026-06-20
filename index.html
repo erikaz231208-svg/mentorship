@@ -184,7 +184,7 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
 <body>
 
 <div class="promo-active-banner" id="promoBanner">
-  <span>🎁 Đã áp dụng mã <strong id="promoBannerCode"></strong> — Giảm <strong id="promoBannerPct"></strong></span>
+  <span>🎁 Đã áp dụng mã <strong id="promoBannerCode"></strong> — Giảm <strong id="promoBannerPct"></strong><span id="promoBannerScope" style="opacity:.8;font-weight:600"></span></span>
   <button onclick="removePromo()" title="Bỏ mã">✕</button>
 </div>
 
@@ -256,13 +256,6 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
         <div class="plan-price" id="priceEAMonth">1,349,000đ</div>
         <div class="plan-per" id="perEAMonth"></div>
         <span class="plan-saving" style="visibility:hidden">-</span>
-        <div class="plan-divider"></div>
-        <ul class="plan-features">
-          <li><span class="check" style="color:var(--green)">✓</span>Truy cập toàn bộ kho tài liệu ICT gốc</li>
-          <li><span class="check" style="color:var(--green)">✓</span>Cộng đồng trading private</li>
-          <li><span class="check" style="color:var(--green)">✓</span>Cập nhật content mới hàng tuần</li>
-          <li><span class="check" style="color:var(--green)">✓</span>Hỗ trợ Q&A qua kênh chung</li>
-        </ul>
         <button class="btn btn-primary btn-full" onclick="openBookModal('EA - Gói Tháng')">Đăng ký Gói Tháng →</button>
       </div>
 
@@ -274,15 +267,19 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
         <div class="plan-price" style="color:var(--gold)" id="priceEAYear">12,699,000đ</div>
         <div class="plan-per" id="perEAYear">≈ 1,058,000đ / tháng</div>
         <span class="plan-saving" id="saveEAYear">🎁 Tiết kiệm 3,489,000đ</span>
-        <div class="plan-divider"></div>
-        <ul class="plan-features">
-          <li><span class="check" style="color:var(--gold)">✓</span>Tất cả quyền lợi Gói Tháng</li>
-          <li><span class="check" style="color:var(--gold)">✓</span>Roadmap học tập 12 tháng có sẵn</li>
-          <li><span class="check" style="color:var(--gold)">✓</span>Access trọn đời các tài liệu đã phát hành</li>
-          <li><span class="check" style="color:var(--gold)">✓</span>Quyền truy cập cộng đồng vĩnh viễn</li>
-        </ul>
         <button class="btn btn-gold btn-full" onclick="openBookModal('EA - Gói Năm')">Đăng ký Gói Năm →</button>
       </div>
+    </div>
+
+    <!-- PROMO chỉ hiển thị trong Early Access -->
+    <div class="promo-section">
+      <div class="promo-title">🎟️ Có mã khuyến mãi?</div>
+      <div class="promo-sub">Mã giảm giá chỉ áp dụng cho gói Early Access</div>
+      <div class="promo-input-row">
+        <input type="text" id="promoInput" class="promo-input" placeholder="Nhập mã" maxlength="20" oninput="resetPromoMsg()" onkeydown="if(event.key==='Enter')applyPromo()"/>
+        <button class="btn-promo" id="btnPromo" onclick="applyPromo()">Áp dụng</button>
+      </div>
+      <div class="promo-msg" id="promoMsg"></div>
     </div>
   </div>
 
@@ -302,13 +299,6 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
         <div class="plan-price" id="priceC1Month">2,699,000đ</div>
         <div class="plan-per" id="perC1Month"></div>
         <span class="plan-saving" style="visibility:hidden">-</span>
-        <div class="plan-divider"></div>
-        <ul class="plan-features">
-          <li><span class="check" style="color:var(--purple)">✓</span>Tất cả quyền lợi Early Access</li>
-          <li><span class="check" style="color:var(--purple)">✓</span>2 buổi mentorship 1-1 / tháng</li>
-          <li><span class="check" style="color:var(--purple)">✓</span>Review trade cá nhân hàng tuần</li>
-          <li><span class="check" style="color:var(--purple)">✓</span>Ưu tiên hỗ trợ trực tiếp 24/7</li>
-        </ul>
         <button class="btn btn-purple btn-full" onclick="openBookModal('C1 - Gói Tháng')">Đăng ký Gói Tháng →</button>
       </div>
 
@@ -320,30 +310,12 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
         <div class="plan-price" id="priceC1Quarter">7,559,000đ</div>
         <div class="plan-per" id="perC1Quarter">≈ 2,520,000đ / tháng</div>
         <span class="plan-saving" id="saveC1Quarter">🎁 Tiết kiệm 538,000đ</span>
-        <div class="plan-divider"></div>
-        <ul class="plan-features">
-          <li><span class="check" style="color:var(--purple)">✓</span>Tất cả quyền lợi Gói Tháng</li>
-          <li><span class="check" style="color:var(--purple)">✓</span>Roadmap cá nhân hoá theo trình độ</li>
-          <li><span class="check" style="color:var(--purple)">✓</span>Phân tích psychology cá nhân</li>
-          <li><span class="check" style="color:var(--purple)">✓</span>Build hệ thống trading riêng cho bạn</li>
-        </ul>
         <button class="btn btn-purple btn-full" onclick="openBookModal('C1 - Gói Quý')">Đăng ký Gói Quý →</button>
       </div>
     </div>
   </div>
 
   <div style="text-align:center;color:var(--dim);font-size:13px;margin-top:24px">💡 Bấm "Đăng ký" để gửi yêu cầu trực tiếp về email mentor</div>
-
-  <!-- PROMO -->
-  <div class="promo-section">
-    <div class="promo-title">🎟️ Có mã khuyến mãi?</div>
-    <div class="promo-sub">Nhập mã giảm giá nếu bạn có</div>
-    <div class="promo-input-row">
-      <input type="text" id="promoInput" class="promo-input" placeholder="Nhập mã" maxlength="20" oninput="resetPromoMsg()" onkeydown="if(event.key==='Enter')applyPromo()"/>
-      <button class="btn-promo" id="btnPromo" onclick="applyPromo()">Áp dụng</button>
-    </div>
-    <div class="promo-msg" id="promoMsg"></div>
-  </div>
 </section>
 
 <section class="cta-section">
@@ -473,7 +445,7 @@ function switchTier(tier) {
 // PROMO CODES
 // ════════════════════════════════════════════
 const PROMO_CODES = {
-  'TL15%': { discount: 15, label: 'Giảm 15%' }
+  'TL15': { discount: 15, label: 'Giảm 15% cho Early Access', scope: 'ea' }
 };
 
 const BASE_PRICES = {
@@ -512,7 +484,7 @@ function applyPromo() {
   input.classList.add('ok');
   showPromoMsg('✅ Đã áp dụng mã ' + matchedKey + ' — ' + promo.label, 'ok');
   updatePrices();
-  showBanner(matchedKey, promo.discount);
+  showBanner(matchedKey, promo.discount, promo.scope);
   sendPromoNotification(matchedKey);
 }
 
@@ -544,7 +516,7 @@ function applyPromoInModal() {
   mainInput.classList.remove('err');
   mainInput.classList.add('ok');
   showPromoMsg('✅ Đã áp dụng mã ' + matchedKey + ' — ' + promo.label, 'ok');
-  showBanner(matchedKey, promo.discount);
+  showBanner(matchedKey, promo.discount, promo.scope);
   updatePrices();
   sendPromoNotification(matchedKey);
 }
@@ -556,9 +528,12 @@ function showPromoMsg(text, type) {
   msg.classList.add(type, 'show');
 }
 
-function showBanner(code, pct) {
+function showBanner(code, pct, scope) {
   document.getElementById('promoBannerCode').textContent = code;
   document.getElementById('promoBannerPct').textContent = pct + '%';
+  const scopeText = scope === 'ea' ? ' (chỉ Early Access)' : scope === 'c1' ? ' (chỉ Coaching 1-1)' : '';
+  const scopeEl = document.getElementById('promoBannerScope');
+  if (scopeEl) scopeEl.textContent = scopeText;
   document.getElementById('promoBanner').classList.add('show');
 }
 
@@ -576,32 +551,36 @@ function removePromo() {
 }
 
 function updatePrices() {
-  const factor = activePromo ? (1 - activePromo.discount / 100) : 1;
+  const eaFactor = (activePromo && (activePromo.scope === 'ea' || activePromo.scope === 'all')) ? (1 - activePromo.discount / 100) : 1;
+  const c1Factor = (activePromo && (activePromo.scope === 'c1' || activePromo.scope === 'all')) ? (1 - activePromo.discount / 100) : 1;
 
-  const eaM = Math.round(BASE_PRICES.EAMonth.price * factor);
+  // EARLY ACCESS
+  const eaM = Math.round(BASE_PRICES.EAMonth.price * eaFactor);
   document.getElementById('priceEAMonth').textContent = fmtVND(eaM);
-  toggleOld('oldEAMonth', BASE_PRICES.EAMonth.price);
+  toggleOld('oldEAMonth', BASE_PRICES.EAMonth.price, eaFactor !== 1);
 
-  const eaY = Math.round(BASE_PRICES.EAYear.price * factor);
+  const eaY = Math.round(BASE_PRICES.EAYear.price * eaFactor);
   document.getElementById('priceEAYear').textContent = fmtVND(eaY);
   document.getElementById('perEAYear').textContent = '≈ ' + fmtVND(eaY / 12) + ' / tháng';
-  document.getElementById('saveEAYear').innerHTML = activePromo
+  document.getElementById('saveEAYear').innerHTML = (eaFactor !== 1)
     ? '🎁 Tiết kiệm thêm ' + fmtVND(BASE_PRICES.EAYear.price - eaY) + ' nhờ mã ' + activePromo.code
     : '🎁 Tiết kiệm 3,489,000đ';
-  toggleOld('oldEAYear', BASE_PRICES.EAYear.price);
+  toggleOld('oldEAYear', BASE_PRICES.EAYear.price, eaFactor !== 1);
 
-  const c1M = Math.round(BASE_PRICES.C1Month.price * factor);
+  // COACHING 1-1 (không bị ảnh hưởng nếu mã chỉ dành cho EA)
+  const c1M = Math.round(BASE_PRICES.C1Month.price * c1Factor);
   document.getElementById('priceC1Month').textContent = fmtVND(c1M);
-  toggleOld('oldC1Month', BASE_PRICES.C1Month.price);
+  toggleOld('oldC1Month', BASE_PRICES.C1Month.price, c1Factor !== 1);
 
-  const c1Q = Math.round(BASE_PRICES.C1Quarter.price * factor);
+  const c1Q = Math.round(BASE_PRICES.C1Quarter.price * c1Factor);
   document.getElementById('priceC1Quarter').textContent = fmtVND(c1Q);
   document.getElementById('perC1Quarter').textContent = '≈ ' + fmtVND(c1Q / 3) + ' / tháng';
-  document.getElementById('saveC1Quarter').innerHTML = activePromo
+  document.getElementById('saveC1Quarter').innerHTML = (c1Factor !== 1)
     ? '🎁 Tiết kiệm thêm ' + fmtVND(BASE_PRICES.C1Quarter.price - c1Q) + ' nhờ mã ' + activePromo.code
     : '🎁 Tiết kiệm 538,000đ';
-  toggleOld('oldC1Quarter', BASE_PRICES.C1Quarter.price);
+  toggleOld('oldC1Quarter', BASE_PRICES.C1Quarter.price, c1Factor !== 1);
 
+  // Cập nhật dropdown
   const sel = document.getElementById('bPlan');
   if (sel) {
     sel.querySelectorAll('option').forEach(o => {
@@ -613,10 +592,10 @@ function updatePrices() {
   }
 }
 
-function toggleOld(id, originalPrice) {
+function toggleOld(id, originalPrice, show) {
   const el = document.getElementById(id);
   if (!el) return;
-  if (activePromo) { el.textContent = fmtVND(originalPrice); el.classList.add('show'); }
+  if (show) { el.textContent = fmtVND(originalPrice); el.classList.add('show'); }
   else { el.classList.remove('show'); }
 }
 
