@@ -222,29 +222,13 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
 
 <section class="section" id="pricing">
   <div class="section-header">
-    <div class="section-label">Lộ Trình</div>
-    <h2 class="section-title">Chọn con đường của bạn</h2>
-  </div>
-
-  <!-- ─────────── TAB SWITCHER ─────────── -->
-  <div class="tier-switch-wrap">
-    <div class="tier-switch">
-      <button class="tier-tab ea active" id="tabEA" onclick="switchTier('ea')">
-        <span class="tier-tab-label">📚 Khám phá</span>
-        <span class="tier-tab-name">Early Access</span>
-      </button>
-      <button class="tier-tab c1" id="tabC1" onclick="switchTier('c1')">
-        <span class="tier-tab-label">🚀 Bứt phá</span>
-        <span class="tier-tab-name">Coaching 1-1</span>
-      </button>
-    </div>
+    <div class="section-label">Early Access</div>
+    <h2 class="section-title">Chọn gói phù hợp</h2>
   </div>
 
   <!-- ─────────── EARLY ACCESS ─────────── -->
   <div class="tier-content active" id="contentEA">
     <div class="tier-intro">
-      <div class="tier-intro-tag ea">📚 Gói Khám Phá</div>
-      <h3 class="tier-intro-title ea">Early Access</h3>
       <p class="tier-intro-desc">Dành cho người muốn <strong>nghiên cứu sâu</strong> và <strong>tự khám phá</strong> những kiến thức trading mới nhất. Bạn được tiếp cận toàn bộ tài liệu, framework ICT, và cộng đồng — học theo nhịp độ riêng, đào sâu từng concept đến gốc.</p>
     </div>
 
@@ -252,8 +236,8 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
       <div class="plan-card">
         <div class="plan-dur" style="color:var(--green)">1 tháng</div>
         <div class="plan-name">Gói Tháng</div>
-        <div class="plan-price-old" id="oldEAMonth">1,349,000đ</div>
-        <div class="plan-price" id="priceEAMonth">1,349,000đ</div>
+        <div class="plan-price-old" id="oldEAMonth">999,000đ</div>
+        <div class="plan-price" id="priceEAMonth">999,000đ</div>
         <div class="plan-per" id="perEAMonth"></div>
         <span class="plan-saving" style="visibility:hidden">-</span>
         <button class="btn btn-primary btn-full" onclick="openBookModal('EA - Gói Tháng')">Đăng ký Gói Tháng →</button>
@@ -263,10 +247,10 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
         <div class="plan-badge badge-gold">TỐT NHẤT</div>
         <div class="plan-dur" style="color:var(--gold)">12 tháng</div>
         <div class="plan-name">Gói Năm</div>
-        <div class="plan-price-old" id="oldEAYear">12,699,000đ</div>
-        <div class="plan-price" style="color:var(--gold)" id="priceEAYear">12,699,000đ</div>
-        <div class="plan-per" id="perEAYear">≈ 1,058,000đ / tháng</div>
-        <span class="plan-saving" id="saveEAYear">🎁 Tiết kiệm 3,489,000đ</span>
+        <div class="plan-price-old" id="oldEAYear">9,999,000đ</div>
+        <div class="plan-price" style="color:var(--gold)" id="priceEAYear">9,999,000đ</div>
+        <div class="plan-per" id="perEAYear">≈ 833,000đ / tháng</div>
+        <span class="plan-saving" id="saveEAYear">🎁 Tiết kiệm 1,989,000đ</span>
         <button class="btn btn-gold btn-full" onclick="openBookModal('EA - Gói Năm')">Đăng ký Gói Năm →</button>
       </div>
     </div>
@@ -280,38 +264,6 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
         <button class="btn-promo" id="btnPromo" onclick="applyPromo()">Áp dụng</button>
       </div>
       <div class="promo-msg" id="promoMsg"></div>
-    </div>
-  </div>
-
-  <!-- ─────────── COACHING 1-1 ─────────── -->
-  <div class="tier-content" id="contentC1">
-    <div class="tier-intro">
-      <div class="tier-intro-tag c1">🚀 Gói Bứt Phá</div>
-      <h3 class="tier-intro-title c1">Coaching 1-1</h3>
-      <p class="tier-intro-desc">Dành cho người muốn <strong>vượt lên số đông nhanh chóng</strong> — không có thời gian để mò mẫm. Bạn được mentor trực tiếp, sửa từng setup, review chiến lược cá nhân, và rút ngắn 70% thời gian tự học.</p>
-    </div>
-
-    <div class="pricing-grid">
-      <div class="plan-card purple-card">
-        <div class="plan-dur" style="color:var(--purple)">1 tháng</div>
-        <div class="plan-name">Gói Tháng</div>
-        <div class="plan-price-old" id="oldC1Month">2,699,000đ</div>
-        <div class="plan-price" id="priceC1Month">2,699,000đ</div>
-        <div class="plan-per" id="perC1Month"></div>
-        <span class="plan-saving" style="visibility:hidden">-</span>
-        <button class="btn btn-purple btn-full" onclick="openBookModal('C1 - Gói Tháng')">Đăng ký Gói Tháng →</button>
-      </div>
-
-      <div class="plan-card purple-card">
-        <div class="plan-badge badge-purple">PHỔ BIẾN</div>
-        <div class="plan-dur" style="color:var(--purple)">3 tháng</div>
-        <div class="plan-name">Gói Quý</div>
-        <div class="plan-price-old" id="oldC1Quarter">7,559,000đ</div>
-        <div class="plan-price" id="priceC1Quarter">7,559,000đ</div>
-        <div class="plan-per" id="perC1Quarter">≈ 2,520,000đ / tháng</div>
-        <span class="plan-saving" id="saveC1Quarter">🎁 Tiết kiệm 538,000đ</span>
-        <button class="btn btn-purple btn-full" onclick="openBookModal('C1 - Gói Quý')">Đăng ký Gói Quý →</button>
-      </div>
     </div>
   </div>
 
@@ -361,14 +313,8 @@ footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;co
         <select class="form-select" id="bPlan" onchange="ce('bPlan')">
           <option value="">-- Chọn gói --</option>
           <option value="Tư vấn chung">Chỉ tư vấn — chưa chọn gói</option>
-          <optgroup label="📚 Early Access">
-            <option value="EA - Gói Tháng — 1,349,000đ">EA — Gói Tháng (1,349,000đ)</option>
-            <option value="EA - Gói Năm — 12,699,000đ">EA — Gói Năm (12,699,000đ)</option>
-          </optgroup>
-          <optgroup label="🚀 Coaching 1-1">
-            <option value="C1 - Gói Tháng — 2,699,000đ">C1 — Gói Tháng (2,699,000đ)</option>
-            <option value="C1 - Gói Quý — 7,559,000đ">C1 — Gói Quý (7,559,000đ)</option>
-          </optgroup>
+          <option value="EA - Gói Tháng — 999,000đ">Gói Tháng (999,000đ)</option>
+          <option value="EA - Gói Năm — 9,999,000đ">Gói Năm (9,999,000đ)</option>
         </select>
         <div class="form-error" id="errBPlan">Vui lòng chọn gói</div>
       </div>
@@ -426,22 +372,6 @@ const OWNER_EMAIL = 'erikaz231208@gmail.com';
 document.getElementById('quickEmail').href = 'mailto:' + OWNER_EMAIL + '?subject=' + encodeURIComponent('Hỏi về The TLab Mentorship');
 
 // ════════════════════════════════════════════
-// TAB SWITCHER
-// ════════════════════════════════════════════
-function switchTier(tier) {
-  document.querySelectorAll('.tier-content').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.tier-tab').forEach(el => el.classList.remove('active'));
-
-  if (tier === 'ea') {
-    document.getElementById('contentEA').classList.add('active');
-    document.getElementById('tabEA').classList.add('active');
-  } else {
-    document.getElementById('contentC1').classList.add('active');
-    document.getElementById('tabC1').classList.add('active');
-  }
-}
-
-// ════════════════════════════════════════════
 // PROMO CODES
 // ════════════════════════════════════════════
 const PROMO_CODES = {
@@ -449,10 +379,8 @@ const PROMO_CODES = {
 };
 
 const BASE_PRICES = {
-  EAMonth:   { price: 1349000,  name: 'EA - Gói Tháng' },
-  EAYear:    { price: 12699000, name: 'EA - Gói Năm' },
-  C1Month:   { price: 2699000,  name: 'C1 - Gói Tháng' },
-  C1Quarter: { price: 7559000,  name: 'C1 - Gói Quý' }
+  EAMonth: { price: 999000,  name: 'EA - Gói Tháng' },
+  EAYear:  { price: 9999000, name: 'EA - Gói Năm' }
 };
 
 let activePromo = null;
@@ -552,7 +480,6 @@ function removePromo() {
 
 function updatePrices() {
   const eaFactor = (activePromo && (activePromo.scope === 'ea' || activePromo.scope === 'all')) ? (1 - activePromo.discount / 100) : 1;
-  const c1Factor = (activePromo && (activePromo.scope === 'c1' || activePromo.scope === 'all')) ? (1 - activePromo.discount / 100) : 1;
 
   // EARLY ACCESS
   const eaM = Math.round(BASE_PRICES.EAMonth.price * eaFactor);
@@ -564,30 +491,15 @@ function updatePrices() {
   document.getElementById('perEAYear').textContent = '≈ ' + fmtVND(eaY / 12) + ' / tháng';
   document.getElementById('saveEAYear').innerHTML = (eaFactor !== 1)
     ? '🎁 Tiết kiệm thêm ' + fmtVND(BASE_PRICES.EAYear.price - eaY) + ' nhờ mã ' + activePromo.code
-    : '🎁 Tiết kiệm 3,489,000đ';
+    : '🎁 Tiết kiệm 1,989,000đ';
   toggleOld('oldEAYear', BASE_PRICES.EAYear.price, eaFactor !== 1);
 
-  // COACHING 1-1 (không bị ảnh hưởng nếu mã chỉ dành cho EA)
-  const c1M = Math.round(BASE_PRICES.C1Month.price * c1Factor);
-  document.getElementById('priceC1Month').textContent = fmtVND(c1M);
-  toggleOld('oldC1Month', BASE_PRICES.C1Month.price, c1Factor !== 1);
-
-  const c1Q = Math.round(BASE_PRICES.C1Quarter.price * c1Factor);
-  document.getElementById('priceC1Quarter').textContent = fmtVND(c1Q);
-  document.getElementById('perC1Quarter').textContent = '≈ ' + fmtVND(c1Q / 3) + ' / tháng';
-  document.getElementById('saveC1Quarter').innerHTML = (c1Factor !== 1)
-    ? '🎁 Tiết kiệm thêm ' + fmtVND(BASE_PRICES.C1Quarter.price - c1Q) + ' nhờ mã ' + activePromo.code
-    : '🎁 Tiết kiệm 538,000đ';
-  toggleOld('oldC1Quarter', BASE_PRICES.C1Quarter.price, c1Factor !== 1);
-
-  // Cập nhật dropdown
+  // Cập nhật dropdown trong modal
   const sel = document.getElementById('bPlan');
   if (sel) {
     sel.querySelectorAll('option').forEach(o => {
-      if (o.value.startsWith('EA - Gói Tháng')) { o.value = 'EA - Gói Tháng — ' + fmtVND(eaM); o.textContent = 'EA — Gói Tháng (' + fmtVND(eaM) + ')'; }
-      else if (o.value.startsWith('EA - Gói Năm')) { o.value = 'EA - Gói Năm — ' + fmtVND(eaY); o.textContent = 'EA — Gói Năm (' + fmtVND(eaY) + ')'; }
-      else if (o.value.startsWith('C1 - Gói Tháng')) { o.value = 'C1 - Gói Tháng — ' + fmtVND(c1M); o.textContent = 'C1 — Gói Tháng (' + fmtVND(c1M) + ')'; }
-      else if (o.value.startsWith('C1 - Gói Quý')) { o.value = 'C1 - Gói Quý — ' + fmtVND(c1Q); o.textContent = 'C1 — Gói Quý (' + fmtVND(c1Q) + ')'; }
+      if (o.value.startsWith('EA - Gói Tháng')) { o.value = 'EA - Gói Tháng — ' + fmtVND(eaM); o.textContent = 'Gói Tháng (' + fmtVND(eaM) + ')'; }
+      else if (o.value.startsWith('EA - Gói Năm')) { o.value = 'EA - Gói Năm — ' + fmtVND(eaY); o.textContent = 'Gói Năm (' + fmtVND(eaY) + ')'; }
     });
   }
 }
